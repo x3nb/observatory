@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Royal Guild of Earl Grey</title>
+<meta name="description" content="An epic British guild for royals, devoted to the noblest cup in the Empire — black tea kissed with bergamot. Explore the royal cellar, learn the ceremony of the pot, and swear the oath to join the fellowship.">
+<meta name="keywords" content="earl grey, tea, british, royal, guild, bergamot, heraldry, britain, aesthetic">
+<meta property="og:title" content="The Royal Guild of Earl Grey">
+<meta property="og:description" content="An epic British guild for royals, devoted to the noblest cup in the Empire — black tea kissed with bergamot. Explore the royal cellar, learn the ceremony of the pot, and swear the oath to join the fellowship.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%231A1A1A%22%2F%3E%3Cg%20stroke%3D%22%23E8CFAE%22%20stroke-width%3D%223%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M20%2040%20h24%20a4%204%200%200%200%200%20-8%20h-2%20a10%2010%200%200%200%20-20%200%20h-2%20a4%204%200%200%200%200%208%20z%22%2F%3E%3Cpath%20d%3D%22M22%2032%20c-2%20-4%202%20-6%200%20-9%22%2F%3E%3Cpath%20d%3D%22M28%2032%20c-1%20-3%201%20-5%200%20-8%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M20%2042%20h24%22%20stroke%3D%22%23F7A9A0%22%20stroke-width%3D%223%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%223%22%20fill%3D%22%23FFC48C%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --rose:#F7A9A0;
+  --beige:#F2D7C4;
+  --cantaloupe:#FFC48C;
+  --gold:#E8CFAE;
+  --cedar:#7A4F32;
+  --peach:#FFBFA8;
+  --ink:#1A1A1A;
+  --cream:#FFF6E8;
+  --cream2:#FFFBF2;
+  --golddeep:#C89B5B;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'Cinzel',Georgia,serif;
+  --display-deco:'Cinzel Decorative','Cinzel',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--serif);
+  font-size:19px;
+  line-height:1.62;
+  color:var(--cedar);
+  background:
+    radial-gradient(70% 40% at 18% 8%, rgba(255,191,168,.35), transparent 60%),
+    radial-gradient(60% 40% at 85% 18%, rgba(255,196,140,.30), transparent 60%),
+    radial-gradient(80% 55% at 50% 110%, rgba(247,169,160,.25), transparent 60%),
+    var(--beige);
+  text-align:center;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--display);color:var(--ink);font-weight:700;line-height:1.15;}
+::selection{background:var(--rose);color:var(--ink);}
+
+/* ---------------- palette strip ---------------- */
+.palette-strip{display:flex;height:9px;position:fixed;top:0;left:0;right:0;z-index:100;}
+.palette-strip i{flex:1;}
+.palette-strip i:nth-child(1){background:#F7A9A0;}
+.palette-strip i:nth-child(2){background:#F2D7C4;}
+.palette-strip i:nth-child(3){background:#FFC48C;}
+.palette-strip i:nth-child(4){background:#E8CFAE;}
+.palette-strip i:nth-child(5){background:#7A4F32;}
+.palette-strip i:nth-child(6){background:#FFBFA8;}
+.palette-strip i:nth-child(7){background:#1A1A1A;}
+
+/* ---------------- nav ---------------- */
+nav{
+  position:fixed;top:9px;left:0;right:0;z-index:90;
+  background:rgba(26,26,26,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(232,207,174,.28);
+  box-shadow:0 4px 26px rgba(26,26,26,.35);
+}
+.nav-inner{
+  max-width:1180px;margin:0 auto;padding:11px 22px;
+  display:flex;align-items:center;gap:22px;
+}
+.brand{display:flex;align-items:center;gap:11px;color:var(--gold);text-decoration:none;}
+.brand svg{width:34px;height:34px;flex:none;}
+.brand .brand-txt{font-family:var(--display);font-size:14px;letter-spacing:3px;line-height:1.1;text-align:left;}
+.brand .brand-txt small{display:block;font-family:var(--serif);font-style:italic;font-size:11px;letter-spacing:1.5px;color:var(--peach);}
+.nav-links{margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+.nav-links a{
+  font-family:var(--display);font-size:12.5px;letter-spacing:2px;
+  color:var(--beige);text-decoration:none;
+  padding:8px 13px;border-radius:999px;transition:.25s;
+}
+.nav-links a:hover{color:var(--ink);background:linear-gradient(135deg,var(--gold),var(--cantaloupe));}
+.nav-links a.cta{
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--gold),var(--cantaloupe));
+  border:1px solid var(--golddeep);
+  box-shadow:0 0 0 1px rgba(232,207,174,.4);
+}
+.nav-links a.cta:hover{box-shadow:0 0 18px rgba(232,207,174,.6);}
+
+/* ---------------- hero ---------------- */
+.hero{
+  min-height:100vh;position:relative;
+  background:
+    radial-gradient(75% 55% at 50% 30%, rgba(232,207,174,.16), transparent 65%),
+    radial-gradient(45% 35% at 18% 78%, rgba(247,169,160,.10), transparent 60%),
+    radial-gradient(45% 35% at 82% 78%, rgba(255,196,140,.10), transparent 60%),
+    var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:120px 22px 70px;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 45% at 50% 110%, rgba(255,196,140,.18), transparent 70%);
+}
+.spark{position:absolute;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);opacity:0;animation:sparkFloat linear infinite;pointer-events:none;}
+@keyframes sparkFloat{
+  0%{opacity:0;transform:translateY(0) scale(.4);}
+  15%{opacity:.9;}
+  80%{opacity:.5;}
+  100%{opacity:0;transform:translateY(-130px) scale(1.1);}
+}
+.steam-wisp{position:absolute;bottom:8%;width:90px;height:190px;border-radius:50%;filter:blur(14px);pointer-events:none;
+  background:radial-gradient(closest-side,rgba(232,207,174,.34),rgba(232,207,174,.08) 55%,transparent);animation:wispRise 9s ease-in-out infinite;}
+@keyframes wispRise{
+  0%{transform:translateY(0) translateX(0) scale(.7);opacity:0;}
+  25%{opacity:.8;}
+  100%{transform:translateY(-260px) translateX(26px) scale(1.35);opacity:0;}
+}
+.hero-eyebrow{
+  font-family:var(--display);font-size:clamp(11px,1.4vw,13px);letter-spacing:5px;
+  color:var(--peach);text-transform:uppercase;margin-bottom:18px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"✦";font-size:9px;color:var(--golddeep);}
+.hero .crest{width:clamp(240px,30vw,330px);margin-bottom:20px;position:relative;z-index:1;filter:drop-shadow(0 14px 40px rgba(0,0,0,.5));display:block;}
+.hero h1{
+  font-family:var(--display-deco);
+  font-weight:700;
+  font-size:clamp(34px,5.6vw,64px);
+  letter-spacing:2px;
+  color:var(--cream);
+  text-shadow:0 2px 24px rgba(232,207,174,.25);
+  position:relative;z-index:1;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(120deg,var(--gold) 10%,var(--cantaloupe) 45%,var(--peach) 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  margin:16px auto 30px;max-width:620px;
+  color:var(--beige);font-size:clamp(17px,2.2vw,21px);font-style:italic;
+  position:relative;z-index:1;
+}
+.hero-sub b{color:var(--cantaloupe);font-weight:600;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;}
+.btn{
+  font-family:var(--display);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  padding:15px 26px;border-radius:999px;text-decoration:none;cursor:pointer;border:none;
+  white-space:nowrap;
+  transition:transform .25s, box-shadow .25s, background .25s;display:inline-block;
+}
+.btn:active{transform:scale(.97);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--cantaloupe));color:#4a2a12;box-shadow:0 8px 30px rgba(232,207,174,.28);}
+#ritual .btn-gold{color:#4a2a12;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(232,207,174,.42);}
+.btn-dark{background:transparent;color:var(--cream);border:1px solid rgba(232,207,174,.5);}
+.btn-dark:hover{transform:translateY(-2px);border-color:var(--gold);color:var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.35);}
+.hero-foot{position:relative;z-index:1;margin-top:34px;font-family:var(--display);font-size:10.5px;letter-spacing:3px;color:var(--golddeep);text-transform:uppercase;}
+.hero-scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;color:var(--golddeep);font-size:20px;animation:bob 2.2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,7px);}}
+
+svg.crest,.cert-crest{aspect-ratio:440/540;}
+.steam-svg{animation:steamRise 3.2s ease-in-out infinite;}
+.steam-svg.s2{animation-delay:1.2s;}
+@keyframes steamRise{
+  0%{transform:translateY(0);opacity:0;}
+  25%{opacity:.85;}
+  60%{transform:translateY(-9px);opacity:.5;}
+  100%{transform:translateY(-16px);opacity:0;}
+}
+
+/* ---------------- marquee ribbon ---------------- */
+.ribbon{background:var(--cedar);overflow:hidden;padding:12px 0;border-block:1px solid rgba(232,207,174,.35);}
+.ribbon-track{display:inline-flex;white-space:nowrap;animation:scrollX 34s linear infinite;will-change:transform;}
+.ribbon-track span{font-family:var(--display);font-size:12px;letter-spacing:4px;color:var(--cream);text-transform:uppercase;padding-right:60px;}
+@keyframes scrollX{to{transform:translateX(-50%);}}
+
+/* ---------------- section shells ---------------- */
+section{position:relative;}
+.wrap{max-width:1120px;margin:0 auto;padding:96px 24px;}
+.sec-head{margin-bottom:52px;}
+.eyebrow{font-family:var(--display);font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--cedar);opacity:.85;}
+.sec-head h2{font-size:clamp(30px,4.4vw,46px);margin:12px 0 8px;}
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--golddeep);}
+.orn::before,.orn::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--golddeep));}
+.orn::after{background:linear-gradient(90deg,var(--golddeep),transparent);}
+.sec-lead{max-width:660px;margin:16px auto 0;font-size:19px;font-style:italic;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ---------------- charter / history ---------------- */
+#charter{background:transparent;}
+.charter-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;text-align:left;}
+.charter-art{display:flex;justify-content:center;}
+.charter-art .crest{width:min(320px,80%);filter:drop-shadow(0 10px 30px rgba(122,79,50,.25));display:block;}
+.charter-text p{font-size:19.5px;margin-bottom:18px;}
+.charter-text p:first-child::first-letter{
+  font-family:var(--display-deco);font-size:3.3em;line-height:.8;float:left;padding:6px 10px 0 0;color:var(--cedar);
+}
+.charter-text p b{color:var(--ink);font-weight:700;}
+.charter-text p .goldword{color:var(--cedar);font-weight:700;font-style:italic;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;}
+.stat{
+  background:var(--cream);border:1px solid rgba(122,79,50,.22);border-radius:14px;
+  padding:20px 14px;text-align:center;box-shadow:0 6px 18px rgba(122,79,50,.08);
+  transition:transform .25s, box-shadow .25s;
+}
+.stat:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(122,79,50,.16);}
+.stat b{display:block;font-family:var(--display-deco);font-size:27px;color:var(--cedar);margin-bottom:4px;}
+.stat span{font-family:var(--display);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--cedar);opacity:.75;}
+
+/* ---------------- cellar / blends ---------------- */
+#cellar{
+  background:
+    radial-gradient(70% 50% at 90% 0%, rgba(255,191,168,.35), transparent 60%),
+    radial-gradient(70% 50% at 8% 100%, rgba(255,196,140,.4), transparent 60%),
+    linear-gradient(180deg,var(--gold),var(--beige) 55%,var(--gold));
+  border-block:1px solid rgba(122,79,50,.18);
+}
+.cellar-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:44px;}
+.cellar-top .sec-head{margin-bottom:0;}
+.pour-btn{
+  font-family:var(--display);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  padding:13px 22px;border-radius:999px;cursor:pointer;
+  background:var(--ink);color:var(--gold);border:1px solid rgba(232,207,174,.4);transition:.25s;
+}
+.pour-btn:hover{box-shadow:0 0 20px rgba(232,207,174,.5);transform:translateY(-2px);}
+.blend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;}
+.blend{
+  --acc:#E8CFAE;
+  background:var(--cream2);
+  border:1px solid rgba(122,79,50,.18);
+  border-radius:20px;
+  padding:30px 28px;
+  text-align:left;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(122,79,50,.12);
+  transition:transform .3s, box-shadow .3s;
+}
+.blend::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:5px;
+  background:linear-gradient(90deg,var(--acc),var(--gold),var(--peach));
+}
+.blend:hover{transform:translateY(-8px);box-shadow:0 22px 46px rgba(122,79,50,.22);}
+.blend-no{font-family:var(--display);font-size:11px;letter-spacing:4px;color:var(--cedar);opacity:.6;}
+.blend h3{font-size:25px;margin:8px 0 6px;color:var(--ink);}
+.blend .blend-desc{font-size:17px;color:var(--cedar);margin-bottom:16px;}
+.blend-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.blend-tags span{
+  font-family:var(--display);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  background:color-mix(in srgb, var(--acc) 26%, white);color:var(--cedar);
+  border:1px solid rgba(122,79,50,.25);padding:5px 11px;border-radius:999px;
+}
+.taste{
+  font-size:17px;font-style:italic;color:var(--ink);
+  border-top:1px dashed rgba(122,79,50,.3);padding-top:14px;
+}
+.taste b{font-style:normal;font-family:var(--display);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--golddeep);}
+
+/* ---------------- ritual / ceremony ---------------- */
+#ritual{
+  background:
+    radial-gradient(70% 60% at 50% 0%, rgba(232,207,174,.10), transparent 65%),
+    var(--ink);
+  color:var(--beige);
+  border-block:1px solid rgba(232,207,174,.25);
+}
+#ritual .sec-head h2{color:var(--cream);}
+#ritual .eyebrow{color:var(--peach);}
+#ritual .orn{color:var(--golddeep);}
+#ritual .sec-lead{color:var(--beige);}
+.ritual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;}
+.step{
+  background:rgba(26,26,26,.0);
+  border:1px solid rgba(232,207,174,.22);
+  border-radius:18px;
+  padding:30px 26px;
+  text-align:left;
+  position:relative;
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.step:hover{transform:translateY(-6px);border-color:rgba(232,207,174,.55);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.step-no{
+  font-family:var(--display-deco);font-size:44px;color:var(--golddeep);
+  position:absolute;top:14px;right:22px;line-height:1;opacity:.9;
+}
+.step h3{color:var(--cantaloupe);font-size:20px;margin-bottom:10px;letter-spacing:1px;padding-right:52px;}
+.step p{font-size:17px;color:var(--beige);}
+.steep-box{
+  margin-top:52px;text-align:center;
+  background:rgba(255,196,140,.06);
+  border:1px dashed rgba(232,207,174,.35);border-radius:20px;padding:34px 26px;
+}
+.steep-box h3{color:var(--cream);margin-bottom:6px;}
+.steep-box .steep-sub{font-style:italic;color:var(--peach);margin-bottom:20px;}
+.steep-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.steep-controls select{
+  font-family:var(--display);font-size:12px;letter-spacing:1.5px;color:var(--gold);
+  background:var(--ink);border:1px solid rgba(232,207,174,.4);border-radius:10px;padding:12px 16px;cursor:pointer;
+}
+.steep-controls select option{background:var(--ink);color:var(--gold);}
+.steep-timer{font-family:var(--display-deco);font-size:64px;color:var(--cantaloupe);text-shadow:0 0 30px rgba(255,196,140,.4);line-height:1;margin:6px 0 18px;}
+.steep-bar{max-width:520px;margin:0 auto 18px;height:8px;background:rgba(232,207,174,.22);border-radius:999px;overflow:hidden;}
+.steep-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--cantaloupe),var(--peach));border-radius:999px;transition:width .25s linear;}
+.steep-status{font-family:var(--display);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--peach);min-height:1.4em;}
+.quote{margin-top:52px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto;}
+.quote p{font-size:clamp(20px,3vw,26px);font-style:italic;color:var(--cream);line-height:1.45;}
+.quote cite{display:block;margin-top:14px;font-family:var(--display);font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--golddeep);font-style:normal;}
+
+/* ---------------- court ---------------- */
+#court{background:
+  radial-gradient(70% 60% at 50% 0%, rgba(255,191,168,.3), transparent 65%),
+  transparent;}
+.court-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;}
+.figure{
+  background:var(--cream);border:1px solid rgba(122,79,50,.2);border-radius:20px;
+  padding:38px 26px 32px;text-align:center;
+  box-shadow:0 10px 30px rgba(122,79,50,.1);
+  transition:transform .3s, box-shadow .3s;
+}
+.figure:hover{transform:translateY(-8px);box-shadow:0 22px 46px rgba(122,79,50,.2);}
+.medal{
+  width:92px;height:92px;margin:0 auto 20px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%, color-mix(in srgb,var(--t) 55%, white), var(--t));
+  border:3px solid var(--ink);
+  box-shadow:0 0 0 5px var(--golddeep), inset 0 0 0 3px rgba(255,246,232,.85);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display-deco);font-size:30px;color:var(--ink);
+  transition:transform .3s;
+}
+.figure:hover .medal{transform:rotate(-4deg) scale(1.06);}
+.figure h3{font-size:21px;margin-bottom:4px;}
+.figure .role{font-family:var(--display);font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--golddeep);margin-bottom:14px;}
+.figure p{font-size:17px;}
+
+/* ---------------- join ---------------- */
+#join{
+  background:
+    radial-gradient(80% 70% at 50% 0%, rgba(255,196,140,.5), transparent 70%),
+    linear-gradient(180deg,var(--gold),var(--cantaloupe) 60%,var(--peach));
+  border-top:1px solid rgba(122,79,50,.2);
+}
+.join-card{
+  max-width:640px;margin:0 auto;
+  background:var(--cream2);
+  border:1px solid rgba(122,79,50,.22);border-radius:24px;
+  padding:40px 34px;
+  box-shadow:0 24px 60px rgba(122,79,50,.22);
+}
+.join-card p{font-size:18.5px;margin-bottom:24px;}
+.oath-form{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.oath-form input{
+  flex:1;min-width:240px;
+  font-family:var(--serif);font-size:19px;font-style:italic;
+  padding:15px 20px;border-radius:999px;
+  border:1px solid rgba(122,79,50,.4);background:white;color:var(--ink);outline:none;
+  transition:box-shadow .25s, border-color .25s;
+}
+.oath-form input:focus{border-color:var(--cedar);box-shadow:0 0 0 4px rgba(122,79,50,.14);}
+.oath-form input::placeholder{color:rgba(122,79,50,.5);}
+.btn-oath{font-family:var(--display);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;
+  padding:16px 30px;border-radius:999px;border:none;cursor:pointer;white-space:nowrap;
+  background:var(--ink);color:var(--gold);box-shadow:0 8px 24px rgba(26,26,26,.35);transition:.25s;}
+.btn-oath:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(26,26,26,.45);}
+
+/* certificate */
+.certificate{display:none;margin-top:38px;text-align:center;}
+.certificate.show{display:block;animation:certIn .8s cubic-bezier(.2,.8,.3,1.2);}
+@keyframes certIn{from{opacity:0;transform:translateY(30px) scale(.96);}to{opacity:1;transform:none;}}
+.cert-frame{
+  max-width:560px;margin:0 auto;
+  background:
+    linear-gradient(var(--cream2),var(--cream2)) padding-box,
+    linear-gradient(135deg,var(--golddeep),var(--gold),var(--peach),var(--golddeep)) border-box;
+  border:3px solid transparent;border-radius:22px;
+  padding:44px 36px 34px;
+  box-shadow:0 30px 70px rgba(122,79,50,.3), inset 0 0 0 1px rgba(122,79,50,.12);
+  position:relative;
+}
+.cert-frame::before{content:"";position:absolute;inset:10px;border:1px solid rgba(122,79,50,.28);border-radius:14px;pointer-events:none;}
+.cert-crest{width:86px;margin:0 auto 6px;display:block;}
+.cert-line1{font-family:var(--display);font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:var(--cedar);opacity:.8;}
+.cert-name{font-family:var(--display-deco);font-size:clamp(26px,4vw,34px);color:var(--ink);margin:8px 0 4px;}
+.cert-line2{font-size:18px;font-style:italic;color:var(--cedar);}
+.cert-title{font-family:var(--display);font-size:clamp(16px,2.4vw,20px);letter-spacing:2px;color:var(--cedar);margin:10px 0 6px;text-transform:uppercase;}
+.cert-motto{font-family:var(--display);font-size:13px;letter-spacing:2px;color:var(--golddeep);font-style:italic;margin-bottom:20px;}
+.cert-foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px dashed rgba(122,79,50,.35);padding-top:16px;font-family:var(--display);font-size:11px;letter-spacing:2px;color:var(--cedar);text-transform:uppercase;}
+.ghost-btn{
+  margin-top:22px;font-family:var(--display);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  background:transparent;color:var(--cedar);border:1px solid rgba(122,79,50,.5);
+  padding:10px 18px;border-radius:999px;cursor:pointer;transition:.25s;
+}
+.ghost-btn:hover{color:var(--ink);border-color:var(--ink);}
+
+/* ---------------- footer ---------------- */
+footer{background:var(--ink);color:var(--beige);padding:64px 24px 40px;text-align:center;}
+footer .crest{width:74px;margin:0 auto 14px;display:block;}
+footer h4{font-family:var(--display-deco);color:var(--cream);font-size:19px;letter-spacing:2px;margin-bottom:8px;}
+footer .motto{font-style:italic;color:var(--peach);margin-bottom:20px;}
+footer .palette{display:flex;justify-content:center;gap:8px;margin-bottom:22px;}
+footer .palette i{width:26px;height:26px;border-radius:50%;border:2px solid rgba(232,207,174,.3);}
+footer .fine{font-family:var(--display);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--golddeep);}
+footer .fine a{color:var(--cantaloupe);text-decoration:none;}
+
+/* ---------------- responsive ---------------- */
+@media (max-width:860px){
+  .charter-grid{grid-template-columns:1fr;gap:34px;}
+  .charter-art{order:-1;}
+}
+@media (max-width:640px){
+  .nav-inner{gap:12px;padding:10px 14px;}
+  .nav-links a{font-size:10.5px;letter-spacing:1px;padding:7px 9px;}
+  .wrap{padding:72px 18px;}
+  .stats{grid-template-columns:1fr;}
+  .steep-timer{font-size:52px;}
+  .blend-grid,.ritual-grid,.court-grid{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="palette-strip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<nav aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="#hero">
+      <svg id="navCrest" aria-hidden="true"></svg>
+      <span class="brand-txt">THE ROYAL GUILD<small>of Earl Grey</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#charter">The Charter</a>
+      <a href="#cellar">The Cellar</a>
+      <a href="#ritual">The Ritual</a>
+      <a href="#court">The Court</a>
+      <a href="#join" class="cta">Swear the Oath</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="hero-eyebrow">Bergamot &middot; Tradition &middot; Royalty</div>
+    <svg class="crest" id="heroCrest" aria-hidden="true"></svg>
+    <h1>The Royal Guild<br>of <em>Earl Grey</em></h1>
+    <p class="hero-sub">An <b>epic British guild for royals</b>, sworn to the most noble cup in the Empire &mdash; black tea kissed with <b>bergamot</b>.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#join">Take the Oath</a>
+      <a class="btn btn-dark" href="#cellar">Explore the Cellar</a>
+    </div>
+    <p class="hero-foot">Pour with grace &middot; Serve with honour</p>
+    <div class="hero-scroll" aria-hidden="true">&#9660;</div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon-track">
+      <span>For the love of the leaf &#10022; Brisk, never bitter &#10022; The third cup is the truest &#10022; Bergamot before boasting &#10022; Milk after tea &#10022; Pour with grace, serve with honour &#10022; A pot is a pact &#10022;</span>
+      <span>For the love of the leaf &#10022; Brisk, never bitter &#10022; The third cup is the truest &#10022; Bergamot before boasting &#10022; Milk after tea &#10022; Pour with grace, serve with honour &#10022; A pot is a pact &#10022;</span>
+    </div>
+  </div>
+
+  <!-- ================= CHARTER ================= -->
+  <section id="charter">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">The Charter &amp; the Legend</p>
+        <h2>The Guild's Founding Tale</h2>
+        <div class="orn">&#10022;</div>
+      </div>
+      <div class="charter-grid">
+        <div class="charter-art reveal">
+          <svg class="crest" id="charterCrest" aria-hidden="true"></svg>
+        </div>
+        <div class="charter-text reveal">
+          <p>In the year <b>1830</b>, Charles Grey, <span class="goldword">Second Earl of the Realm</span>, sat as Prime Minister of Great Britain &mdash; and no cup touched his lips save black tea. Legend holds that a grateful mandarin, owing the Earl a debt of honour, presented him with a blend steeped in the oil of the <b>bergamot</b>, a citrus that grows only in the sun-drenched south of Calabria.</p>
+          <p>The Earl's London house blended that tea into a brew so radiant that the peerage proclaimed it <b>the tea of the realm</b> in a single sitting. Charles, never one for ceremony, waved away the honour. The tea, however, insisted.</p>
+          <p>And so, in <b>1831</b>, a fellowship was founded in his name &mdash; <span class="goldword">the Royal Guild of Earl Grey</span>: blenders, brewers, and tasters sworn to the perfection of one cup. Today the Guild opens its doors &mdash; to pour for the crown, to protect the bergamot, and to welcome any soul who treats tea as <b>ceremony rather than habit</b>.</p>
+          <div class="stats">
+            <div class="stat"><b>1831</b><span>Guild founded</span></div>
+            <div class="stat"><b>95&deg;</b><span>The sacred water</span></div>
+            <div class="stat"><b>3&ndash;5 min</b><span>The hallowed steep</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CELLAR ================= -->
+  <section id="cellar">
+    <div class="wrap">
+      <div class="cellar-top">
+        <div class="sec-head reveal">
+          <p class="eyebrow">The Royal Cellar</p>
+          <h2>Blends of the Realm</h2>
+          <div class="orn">&#10022;</div>
+        </div>
+        <button class="pour-btn reveal" id="pourBtn">&#9752; Today's Pour</button>
+      </div>
+      <div class="blend-grid">
+        <article class="blend reveal" style="--acc:#E8CFAE">
+          <p class="blend-no">BLEND No. I</p>
+          <h3>The Classic</h3>
+          <p class="blend-desc">The original charter of taste &mdash; black tea and bergamot, balanced to a sovereign perfection.</p>
+          <div class="blend-tags"><span>95&deg;</span><span>3&ndash;4 min</span><span>Brisk</span></div>
+          <p class="taste"><b>tasting note &middot;</b> "Citrus at the door, warm malt on the threshold, and a finish that sits the visitor down."</p>
+        </article>
+        <article class="blend reveal" style="--acc:#F7A9A0">
+          <p class="blend-no">BLEND No. II</p>
+          <h3>Lady Grey</h3>
+          <p class="blend-desc">A lighter kiss &mdash; more citrus, a whisper of lemon and orange peel over the classic leaf.</p>
+          <div class="blend-tags"><span>92&deg;</span><span>2&ndash;3 min</span><span>Bright</span></div>
+          <p class="taste"><b>tasting note &middot;</b> "A courtly bow of citrus that never overstays its welcome. Suits the afternoon."</p>
+        </article>
+        <article class="blend reveal" style="--acc:#FFC48C">
+          <p class="blend-no">BLEND No. III</p>
+          <h3>Lavender Grey</h3>
+          <p class="blend-desc">Highland lavender laid gently over the classic &mdash; floral, serene, unshakably composed.</p>
+          <div class="blend-tags"><span>95&deg;</span><span>3 min</span><span>Calm</span></div>
+          <p class="taste"><b>tasting note &middot;</b> "The garden at dusk. Bergamot holds the door while lavender takes the arm."</p>
+        </article>
+        <article class="blend reveal" style="--acc:#FFBFA8">
+          <p class="blend-no">BLEND No. IV</p>
+          <h3>Cream Earl Grey</h3>
+          <p class="blend-desc">Velvet cream folded into the bergamot &mdash; decadent, silken, scandalously civilised.</p>
+          <div class="blend-tags"><span>95&deg;</span><span>4 min</span><span>Velvet</span></div>
+          <p class="taste"><b>tasting note &middot;</b> "A waistcoat of cream over a citrus shirt. Rich, and aware of it."</p>
+        </article>
+        <article class="blend reveal" style="--acc:#7A4F32">
+          <p class="blend-no">BLEND No. V</p>
+          <h3>Smoked Grey</h3>
+          <p class="blend-desc">A Russian-caravan smoke beside the bergamot &mdash; fireside, bold, for the winter throne.</p>
+          <div class="blend-tags"><span>98&deg;</span><span>4&ndash;5 min</span><span>Smoky</span></div>
+          <p class="taste"><b>tasting note &middot;</b> "The crackle of a hearth behind a citrus window. Daring. Worth the risk."</p>
+        </article>
+        <article class="blend reveal" style="--acc:#F2D7C4">
+          <p class="blend-no">BLEND No. VI</p>
+          <h3>Golden Grey</h3>
+          <p class="blend-desc">A thread of honey-blonde Ceylon woven through the classic &mdash; radiant as a summer morning.</p>
+          <div class="blend-tags"><span>95&deg;</span><span>3&ndash;4 min</span><span>Golden</span></div>
+          <p class="taste"><b>tasting note &middot;</b> "Sunlight in liquid form, with the bergamot as its loyal shadow."</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RITUAL ================= -->
+  <section id="ritual">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">The Ceremony</p>
+        <h2>The Ritual of the Pot</h2>
+        <div class="orn">&#10022;</div>
+        <p class="sec-lead">Six sacred steps. No skipping. The Guild will know.</p>
+      </div>
+      <div class="ritual-grid">
+        <div class="step reveal"><span class="step-no">I</span><h3>Warm the Pot</h3><p>Swirl boiling water through the vessel to banish the chill of neglect. A cold pot is a betrayed pot.</p></div>
+        <div class="step reveal"><span class="step-no">II</span><h3>Measure the Leaf</h3><p>One level teaspoon per cup, and one for the pot &mdash; the traditional tax the pot demands of all who pour.</p></div>
+        <div class="step reveal"><span class="step-no">III</span><h3>Summon the Water</h3><p>Bring the water to the very edge of boiling &mdash; 95&deg;, where the bergamot sings and the leaf opens freely.</p></div>
+        <div class="step reveal"><span class="step-no">IV</span><h3>Steep in Patience</h3><p>Three to five minutes. Let the leaves unfurl. Never rush, and never &mdash; the Guild shudders &mdash; squeeze.</p></div>
+        <div class="step reveal"><span class="step-no">V</span><h3>Pour with Grace</h3><p>Through a silver strainer into fine bone china. Milk or lemon, never both, and always after.</p></div>
+        <div class="step reveal"><span class="step-no">VI</span><h3>Swear Silence</h3><p>The first sip is taken in reverence. No words are spoken. The Guild will know if you dunked the biscuit twice.</p></div>
+      </div>
+
+      <div class="steep-box reveal">
+        <h3>The Hallowed Steep</h3>
+        <p class="steep-sub">Start the timer, then stand guard over the pot like the noble you are.</p>
+        <div class="steep-controls">
+          <select id="steepSelect" aria-label="Steep duration">
+            <option value="3">3 minutes &mdash; for the brisk</option>
+            <option value="4" selected>4 minutes &mdash; for the balanced</option>
+            <option value="5">5 minutes &mdash; for the bold</option>
+          </select>
+          <button class="btn btn-gold" id="steepBtn">Begin the Steep</button>
+        </div>
+        <div class="steep-timer" id="steepTimer">4:00</div>
+        <div class="steep-bar"><div class="steep-fill" id="steepFill"></div></div>
+        <p class="steep-status" id="steepStatus">The pot awaits your command.</p>
+      </div>
+
+      <div class="quote reveal">
+        <p>&ldquo;Tea is the only acceptable excuse for a pause in the affairs of empire.&rdquo;</p>
+        <cite>&mdash; The Keeper of the Pot, on the third steep</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COURT ================= -->
+  <section id="court">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">The Guild Court</p>
+        <h2>Three Who Guard the Leaf</h2>
+        <div class="orn">&#10022;</div>
+      </div>
+      <div class="court-grid">
+        <div class="figure reveal">
+          <div class="medal" style="--t:#E8CFAE">MB</div>
+          <h3>Master Blender</h3>
+          <p class="role">Guardian of the Bergamot Ledger</p>
+          <p>Can taste a tenth of a drop of citrus across a ballroom, and keeps the proportions of every blend in a book no one else may open.</p>
+        </div>
+        <div class="figure reveal">
+          <div class="medal" style="--t:#FFC48C">KP</div>
+          <h3>Keeper of the Pot</h3>
+          <p class="role">Warden of the Silver Vessels</p>
+          <p>Swears no pot is ever used un-warmed, and polishes the silver until it glints at dawn &mdash; usually with a cup in the other hand.</p>
+        </div>
+        <div class="figure reveal">
+          <div class="medal" style="--t:#F7A9A0">CA</div>
+          <h3>Countess of Afternoon</h3>
+          <p class="role">Patroness of the Third Hour</p>
+          <p>Governs the three o'clock hour with an iron rule: nothing may come between the sun and the four-o'clock biscuit. Nothing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= JOIN ================= -->
+  <section id="join">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Membership</p>
+        <h2>Swear the Oath</h2>
+        <div class="orn">&#10022;</div>
+      </div>
+      <div class="join-card reveal">
+        <p>Join the fellowship and receive your <b>heraldic seat</b>. Speak thy name and the Guild shall grant thee a title, a motto, and a number in the eternal registry.</p>
+        <form class="oath-form" id="oathForm">
+          <input id="nameInput" type="text" maxlength="60" placeholder="Thy name, in full..." autocomplete="name">
+          <button class="btn-oath" type="submit">Swear the Oath</button>
+        </form>
+
+        <div class="certificate" id="certificate">
+          <div class="cert-frame">
+            <svg class="cert-crest" id="certCrest" aria-hidden="true"></svg>
+            <p class="cert-line1">By Royal Appointment, the Guild doth admit</p>
+            <h3 class="cert-name" id="certName">—</h3>
+            <p class="cert-line2">to the fellowship of tea, bearing the honoured title of</p>
+            <h4 class="cert-title" id="certTitle">—</h4>
+            <p class="cert-motto" id="certMotto">&ldquo;&mdash;&rdquo;</p>
+            <div class="cert-foot"><span id="certNo">EG-0000</span><span id="certDate">Anno Domini</span></div>
+          </div>
+          <button class="ghost-btn" id="resetOath">Burn this charter</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <svg class="crest" id="footCrest" aria-hidden="true"></svg>
+  <h4>The Royal Guild of Earl Grey</h4>
+  <p class="motto">Est. MDCCCXXXI &middot; Brisk, never bitter.</p>
+  <div class="palette" aria-hidden="true">
+    <i style="background:#F7A9A0"></i><i style="background:#F2D7C4"></i><i style="background:#FFC48C"></i>
+    <i style="background:#E8CFAE"></i><i style="background:#7A4F32"></i><i style="background:#FFBFA8"></i><i style="background:#1A1A1A"></i>
+  </div>
+  <p class="fine">By Royal Appointment to the Queen of Afternoons &middot; Lest we forget the bergamot</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var NS='http://www.w3.org/2000/svg';
+
+  /* ---------- heraldic crest ---------- */
+  function buildCrest(svg){
+    if(!svg || svg.getAttribute('data-built')) return;
+    svg.setAttribute('data-built','1');
+    svg.setAttribute('viewBox','0 0 440 540');
+    svg.setAttribute('role','img');
+    svg.setAttribute('aria-label','Crest of the Royal Guild of Earl Grey');
+    function n(name,attrs){
+      var e=document.createElementNS(NS,name);
+      for(var k in attrs){ e.setAttribute(k,attrs[k]); }
+      return e;
+    }
+    function addN(parent,name,attrs){
+      var e=n(name,attrs);
+      parent.appendChild(e);
+      return e;
+    }
+    var shield='M220,64 C150,64 118,92 118,140 L118,326 C118,394 158,436 220,464 C282,436 322,394 322,326 L322,140 C322,92 290,64 220,64 Z';
+    var clipId='crestClip-'+svg.id;
+    var defs=addN(svg,'defs',{});
+    var clip=addN(defs,'clipPath',{id:clipId});
+    addN(clip,'path',{d:shield});
+
+    /* laurels */
+    function laurel(side){
+      var g=n('g',{});
+      var baseX=side==='l'?64:376;
+      var dir=side==='l'?1:-1;
+      var pts=[];
+      for(var i=0;i<=7;i++){
+        var t=i/7;
+        pts.push([baseX+dir*(30*Math.sin(Math.PI*t*0.92)), 208+t*158]);
+      }
+      var d='M'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' L ');
+      addN(g,'path',{d:d,fill:'none',stroke:'#7A4F32','stroke-width':3.5,'stroke-linecap':'round'});
+      for(var i=1;i<=6;i++){
+        var p=pts[i];
+        var ang=dir*( -30 + i*18 ) + (i%2? 10 : -10);
+        var e=addN(g,'ellipse',{cx:p[0].toFixed(1),cy:p[1].toFixed(1),rx:19,ry:8,fill:'#7A4F32',opacity:0.92});
+        e.setAttribute('transform','rotate('+ang.toFixed(1)+' '+p[0].toFixed(1)+' '+p[1].toFixed(1)+')');
+      }
+      return g;
+    }
+    svg.appendChild(laurel('l'));
+    svg.appendChild(laurel('r'));
+
+    /* crown */
+    var crown=addN(svg,'g',{});
+    addN(crown,'rect',{x:168,y:30,width:104,height:15,rx:4,fill:'#E8CFAE',stroke:'#7A4F32','stroke-width':3});
+    addN(crown,'path',{d:'M184 30 L178 8 L196 26 L206 4 L220 24 L234 4 L244 26 L262 8 L256 30 Z',fill:'#E8CFAE',stroke:'#7A4F32','stroke-width':3,'stroke-linejoin':'round'});
+    addN(crown,'circle',{cx:206,cy:4,r:4.5,fill:'#F7A9A0',stroke:'#7A4F32','stroke-width':2});
+    addN(crown,'circle',{cx:234,cy:4,r:4.5,fill:'#F7A9A0',stroke:'#7A4F32','stroke-width':2});
+    addN(crown,'circle',{cx:220,cy:4,r:5,fill:'#FFC48C',stroke:'#7A4F32','stroke-width':2});
+    addN(crown,'circle',{cx:186,cy:37,r:3,fill:'#F7A9A0'});
+    addN(crown,'circle',{cx:200,cy:37,r:3,fill:'#FFC48C'});
+    addN(crown,'circle',{cx:220,cy:37,r:3,fill:'#F7A9A0'});
+    addN(crown,'circle',{cx:240,cy:37,r:3,fill:'#FFC48C'});
+    addN(crown,'circle',{cx:254,cy:37,r:3,fill:'#F7A9A0'});
+
+    /* shield quarters */
+    var q=addN(svg,'g',{'clip-path':'url(#'+clipId+')'});
+    addN(q,'rect',{x:0,y:0,width:220,height:252,fill:'#F2D7C4'});
+    addN(q,'rect',{x:220,y:0,width:220,height:252,fill:'#FFC48C'});
+    addN(q,'rect',{x:0,y:252,width:220,height:260,fill:'#E8CFAE'});
+    addN(q,'rect',{x:220,y:252,width:220,height:260,fill:'#F7A9A0'});
+    addN(q,'line',{x1:220,y1:64,x2:220,y2:464,stroke:'#7A4F32','stroke-width':4});
+    addN(q,'line',{x1:118,y1:252,x2:322,y2:252,stroke:'#7A4F32','stroke-width':4});
+
+    /* Q1 bergamot fruit */
+    var c1=addN(svg,'g',{transform:'translate(110,126)',stroke:'#7A4F32'});
+    addN(c1,'circle',{r:30,fill:'#FFC48C','stroke-width':4});
+    addN(c1,'path',{d:'M0 22 Q7 12 4 2','stroke-width':3,'stroke-linecap':'round'});
+    addN(c1,'path',{d:'M2 8 Q-8 -2 -18 -6','stroke-width':3,'stroke-linecap':'round'});
+    var leaf=addN(c1,'ellipse',{cx:-20,cy:-6,rx:9,ry:5,fill:'#7A4F32'});
+    leaf.setAttribute('transform','rotate(-28 -20 -6)');
+    addN(c1,'circle',{cx:-4,cy:6,r:5,fill:'none','stroke-width':2,opacity:0.55});
+
+    /* Q2 bergamot sprig */
+    var c2=addN(svg,'g',{transform:'translate(330,126)',stroke:'#7A4F32',fill:'#7A4F32'});
+    addN(c2,'path',{d:'M0 26 L0 -6','stroke-width':3,'stroke-linecap':'round'});
+    var l1=addN(c2,'ellipse',{cx:0,cy:-6,rx:6,ry:13});
+    l1.setAttribute('transform','rotate(-8 0 -6)');
+    var l2=addN(c2,'ellipse',{cx:-8,cy:8,rx:6.5,ry:12});
+    l2.setAttribute('transform','rotate(30 -8 8)');
+    var l3=addN(c2,'ellipse',{cx:8,cy:14,rx:6.5,ry:12});
+    l3.setAttribute('transform','rotate(-38 8 14)');
+    addN(c2,'circle',{cx:-2,cy:26,r:2.5,fill:'#F2D7C4'});
+
+    /* Q3 teapot */
+    var c3=addN(svg,'g',{transform:'translate(110,362)',fill:'none',stroke:'#7A4F32'});
+    addN(c3,'path',{d:'M-34 8 Q-34 -22 0 -22 Q34 -22 34 8 Z',fill:'#FFF6E8','stroke-width':4});
+    addN(c3,'path',{d:'M-34 8 Q-60 4 -56 -6','stroke-width':4,'stroke-linecap':'round'});
+    addN(c3,'path',{d:'M34 0 Q52 -4 49 -13','stroke-width':4,'stroke-linecap':'round'});
+    addN(c3,'path',{d:'M-16 -22 Q0 -34 16 -22','stroke-width':4});
+    addN(c3,'circle',{cx:0,cy:-36,r:3.5,fill:'#F7A9A0','stroke-width':0});
+    addN(c3,'path',{d:'M-34 8 Q0 24 34 8','stroke-width':4});
+    addN(c3,'path',{d:'M-20 8 L-20 15 M0 11 L0 18 M20 8 L20 15','stroke-width':3,'stroke-linecap':'round'});
+
+    /* Q4 small crown */
+    var c4=addN(svg,'g',{transform:'translate(330,352)',stroke:'#7A4F32'});
+    addN(c4,'rect',{x:-26,y:14,width:52,height:10,rx:3,fill:'#E8CFAE','stroke-width':3});
+    addN(c4,'path',{d:'M-20 14 L-28 -4 L-12 8 L-3 -10 L0 -2 L3 -10 L12 8 L28 -4 L20 14 Z',fill:'#E8CFAE','stroke-width':3,'stroke-linejoin':'round'});
+    addN(c4,'circle',{cx:0,cy:-10,r:3,fill:'#FFBFA8','stroke-width':2});
+    addN(c4,'circle',{cx:-16,cy:19,r:2.5,fill:'#F7A9A0'});
+    addN(c4,'circle',{cx:0,cy:19,r:2.5,fill:'#FFC48C'});
+    addN(c4,'circle',{cx:16,cy:19,r:2.5,fill:'#F7A9A0'});
+
+    /* center roundel + cup */
+    var ctr=addN(svg,'g',{});
+    addN(ctr,'circle',{cx:220,cy:256,r:64,fill:'#FFF6E8',stroke:'#7A4F32','stroke-width':6});
+    addN(ctr,'circle',{cx:220,cy:256,r:55,fill:'none',stroke:'#7A4F32','stroke-width':1.5,'stroke-dasharray':'3 4',opacity:0.7});
+    addN(ctr,'path',{class:'steam-svg',d:'M208 196 q-5 -7 0 -14 t0 -14',fill:'none',stroke:'#7A4F32','stroke-width':3,'stroke-linecap':'round',opacity:0.85});
+    addN(ctr,'path',{class:'steam-svg s2',d:'M232 198 q5 -7 0 -14 t0 -14',fill:'none',stroke:'#7A4F32','stroke-width':3,'stroke-linecap':'round',opacity:0.85});
+    addN(ctr,'path',{d:'M184 258 Q184 234 202 228 Q196 238 200 258 Z',fill:'#F7A9A0',stroke:'#7A4F32','stroke-width':3,'stroke-linejoin':'round'});
+    addN(ctr,'path',{d:'M256 258 Q256 234 238 228 Q244 238 240 258 Z',fill:'#F7A9A0',stroke:'#7A4F32','stroke-width':3,'stroke-linejoin':'round'});
+    addN(ctr,'path',{d:'M192 258 Q192 246 220 246 Q248 246 248 258 L242 282 Q242 290 220 290 Q198 290 198 282 Z',fill:'#FFC48C',stroke:'#7A4F32','stroke-width':3.5,'stroke-linejoin':'round'});
+    addN(ctr,'path',{d:'M248 258 Q266 254 268 244',fill:'none',stroke:'#7A4F32','stroke-width':3.5,'stroke-linecap':'round'});
+    addN(ctr,'path',{d:'M186 290 Q220 300 254 290 L246 300 Q220 308 194 300 Z',fill:'#E8CFAE',stroke:'#7A4F32','stroke-width':3,'stroke-linejoin':'round'});
+
+    /* shield outline */
+    addN(svg,'path',{d:shield,fill:'none',stroke:'#7A4F32','stroke-width':7});
+
+    /* ribbon */
+    var rib=addN(svg,'g',{});
+    addN(rib,'path',{d:'M66 474 L374 474 L374 510 L322 496 L220 516 L118 496 L66 510 Z',fill:'#E8CFAE',stroke:'#7A4F32','stroke-width':3.5,'stroke-linejoin':'round'});
+    addN(rib,'path',{d:'M66 474 L374 474 L374 486 L66 486 Z',fill:'#FFBFA8',stroke:'#7A4F32','stroke-width':2.5});
+    var txt=addN(rib,'text',{x:220,y:503,'text-anchor':'middle','font-family':'Cinzel,Georgia,serif','font-size':19,'font-weight':800,'letter-spacing':4,fill:'#3A2010'});
+    txt.textContent='EST. MDCCCXXXI';
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    ['navCrest','heroCrest','charterCrest','certCrest','footCrest'].forEach(function(id){
+      buildCrest(document.getElementById(id));
+    });
+  });
+
+  /* ---------- hero ambience ---------- */
+  function ambience(){
+    var hero=document.querySelector('.hero');
+    if(!hero) return;
+    var n=14;
+    for(var i=0;i<n;i++){
+      var sp=document.createElement('span');
+      sp.className='spark';
+      var s=2+Math.random()*3.5;
+      sp.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(6+Math.random()*88)+'%;top:'+(30+Math.random()*58)+'%;animation-duration:'+(6+Math.random()*8)+'s;animation-delay:'+(-Math.random()*10)+'s;';
+      hero.appendChild(sp);
+    }
+    for(var i=0;i<6;i++){
+      var w=document.createElement('span');
+      w.className='steam-wisp';
+      w.style.left=(22+i*13)+'%';
+      w.style.animationDelay=(-Math.random()*9)+'s';
+      w.style.animationDuration=(7+Math.random()*5)+'s';
+      hero.appendChild(w);
+    }
+  }
+  document.addEventListener('DOMContentLoaded',ambience);
+
+  /* ---------- reveal on scroll (with safe fallback) ---------- */
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+      },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+      els.forEach(function(el){ io.observe(el); });
+      setTimeout(function(){ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); },3000);
+    } else {
+      els.forEach(function(el){ el.classList.add('in'); });
+    }
+  })();
+
+  /* ---------- today's pour ---------- */
+  (function(){
+    var btn=document.getElementById('pourBtn');
+    var blends=[
+      {n:'The Classic',m:'95° · 3–4 minutes · brisk as the morning'},
+      {n:'Lady Grey',m:'92° · 2–3 minutes · bright as a court bow'},
+      {n:'Lavender Grey',m:'95° · 3 minutes · calm as highland dusk'},
+      {n:'Cream Earl Grey',m:'95° · 4 minutes · velvet and scandal'},
+      {n:'Smoked Grey',m:'98° · 4–5 minutes · bold as a winter throne'},
+      {n:'Golden Grey',m:'95° · 3–4 minutes · sunlight in liquid form'}
+    ];
+    var last=-1;
+    btn.addEventListener('click',function(){
+      var i; do{ i=Math.floor(Math.random()*blends.length); }while(i===last && blends.length>1);
+      last=i;
+      var b=blends[i];
+      btn.textContent='☖ The Guild pours: '+b.n+' — '+b.m;
+      btn.style.animation='none'; void btn.offsetWidth;
+      btn.style.animation='pourPulse .6s ease';
+      setTimeout(function(){ btn.style.animation=''; },650);
+    });
+  })();
+
+  /* ---------- steep timer ---------- */
+  (function(){
+    var btn=document.getElementById('steepBtn');
+    var timerEl=document.getElementById('steepTimer');
+    var fill=document.getElementById('steepFill');
+    var status=document.getElementById('steepStatus');
+    var sel=document.getElementById('steepSelect');
+    var interval=null, total=0, left=0;
+
+    function fmt(sec){
+      var m=Math.floor(sec/60), s=sec%60;
+      return m+':'+String(s).padStart(2,'0');
+    }
+    function stop(){
+      if(interval){ clearInterval(interval); interval=null; }
+      btn.textContent='Begin the Steep';
+      btn.classList.remove('btn-dark'); btn.classList.add('btn-gold');
+    }
+    function start(){
+      total=parseInt(sel.value,10)*60; left=total;
+      if(interval) clearInterval(interval);
+      btn.textContent='☕ Steeping…';
+      btn.classList.remove('btn-gold'); btn.classList.add('btn-dark');
+      status.textContent='The kettle has spoken. Stand guard.';
+      interval=setInterval(function(){
+        left--;
+        if(left<=0){
+          stop();
+          timerEl.textContent='0:00';
+          fill.style.width='100%';
+          status.textContent='Pour now, in reverence. The Guild is watching.';
+          return;
+        }
+        timerEl.textContent=fmt(left);
+        fill.style.width=( (total-left)/total*100 )+'%';
+        if(left===30) status.textContent='Thirty seconds remain. Do not waver.';
+        else if(left===10) status.textContent='Prepare the cups. Almost there.';
+      },1000);
+    }
+    btn.addEventListener('click',function(){ if(interval) stop(); else start(); });
+  })();
+
+  /* ---------- oath / certificate ---------- */
+  (function(){
+    var form=document.getElementById('oathForm');
+    var input=document.getElementById('nameInput');
+    var cert=document.getElementById('certificate');
+    var KEY='guildOath';
+
+    var titles=[
+      'Duke of the Morning Cup','Duchess of the Second Steep',
+      'Earl of the Silver Pot','Countess of the Cream Tea',
+      'Viscount of the Brisk Brew','Viscountess of the Warm Hearth',
+      'Marquess of the High Tea','Marchioness of the Golden Hour',
+      'Baron of the Leaf','Baroness of the Bergamot',
+      'Keeper of the Sacred Kettle','Master Blender Royal'
+    ];
+    var mottos=[
+      'Brisk, never bitter.','The third cup is the truest.',
+      'Pour with the left, receive with the heart.','A pot is a pact.',
+      'Milk after tea, or not at all.','The leaf is patient; be like the leaf.',
+      'Two sugars, one silence.','Bergamot before boasting.',
+      'In the steam, all are equal.','Never dunk a monarch\u2019s biscuit.',
+      'The best tea is the one poured for another.'
+    ];
+    function pick(arr,excl){ var v; do{ v=arr[Math.floor(Math.random()*arr.length)]; }while(v===excl && arr.length>1); return v; }
+
+    function show(data){
+      document.getElementById('certName').textContent=data.name;
+      document.getElementById('certTitle').textContent=data.title;
+      document.getElementById('certMotto').textContent='\u201C'+data.motto+'\u201D';
+      document.getElementById('certNo').textContent=data.no;
+      document.getElementById('certDate').textContent=data.date;
+      cert.classList.add('show');
+      cert.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    try{
+      var saved=JSON.parse(localStorage.getItem(KEY));
+      if(saved && saved.name){ show(saved); }
+    }catch(e){}
+
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=input.value.trim();
+      if(!name) return;
+      var prev=null;
+      try{ var p=JSON.parse(localStorage.getItem(KEY)); prev=p?{title:p.title,motto:p.motto}:null; }catch(err){}
+      var title=pick(titles,prev?prev.title:null);
+      var motto=pick(mottos,prev?prev.motto:null);
+      var now=new Date();
+      var data={
+        name:name,
+        title:title,
+        motto:motto,
+        no:'EG-'+now.getFullYear()+'-'+Math.floor(1000+Math.random()*9000),
+        date:now.toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'})
+      };
+      try{ localStorage.setItem(KEY,JSON.stringify(data)); }catch(err){}
+      show(data);
+    });
+
+    document.getElementById('resetOath').addEventListener('click',function(){
+      if(!window.confirm('Burn thy charter and resign from the fellowship?')) return;
+      try{ localStorage.removeItem(KEY); }catch(e){}
+      cert.classList.remove('show');
+    });
+  })();
+})();
+</script>
+
+</body>
+</html>
