@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curiosity Dreams</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%231a0b2e%22%2F%3E%3Cg%20stroke%3D%22%23ff007f%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M32%2032L56%2032M32%2032L32%208M32%2032L8%2032M32%2032L32%2056M32%2032L48.97%2015.03M32%2032L48.97%2048.97M32%2032L15.03%2048.97M32%2032L15.03%2015.03%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%227%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2213%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2219%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%222.6%22%20fill%3D%22%23ff007f%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One&family=Vampiro+One&family=UnifrakturMaguntia&family=Special+Elite&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --dusk:#0d0614;
+  --dusk2:#150a24;
+  --panel:#1a0b2e;
+  --pink:#ff007f;
+  --fuchsia:#d900ff;
+  --lav:#c4a9e8;
+  --mauve:#9b6fb8;
+  --gold:#e8b45a;
+  --glass:rgba(26,11,46,.42);
+  --glass-edge:rgba(217,0,255,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:'Klee One',cursive;
+  color:var(--lav);
+  background:
+    radial-gradient(120% 90% at 20% 0%, var(--dusk2) 0%, var(--dusk) 55%, #0a0410 100%);
+  min-height:100%;
+  overflow-x:hidden;
+  position:relative;
+  text-align:center;
+}
+/* ---------- ambient rain ---------- */
+#rainCtn{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.rain-drop{
+  position:absolute;top:-40px;
+  width:1px;height:34px;
+  background:linear-gradient(180deg,transparent,rgba(196,169,232,.10));
+  border-radius:2px;
+  animation:fall linear infinite;
+  opacity:.5;
+}
+@keyframes fall{
+  to{transform:translateY(105vh);}
+}
+/* ---------- hologram glints ---------- */
+#glintCtn{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.glint{
+  position:absolute;width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle,var(--fuchsia) 0%,transparent 70%);
+  filter:blur(1px);
+  opacity:0;
+  animation:twinkle 9s ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:0;transform:translateY(0) scale(.6);}
+  50%{opacity:.9;transform:translateY(-26px) scale(1.25);}
+}
+/* ---------- layout ---------- */
+.wrap{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:44px 20px 90px;}
+header{margin-bottom:34px;}
+header h1{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-weight:400;
+  font-size:clamp(38px,6vw,66px);
+  color:var(--lav);
+  text-shadow:0 0 26px rgba(217,0,255,.45),0 0 60px rgba(255,0,127,.25);
+  letter-spacing:1px;
+}
+header p.tagline{
+  font-family:'Klee One',cursive;
+  color:var(--mauve);
+  font-size:clamp(13px,2vw,17px);
+  margin-top:6px;
+  letter-spacing:.5px;
+}
+nav{
+  margin:22px auto 0;
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+}
+nav a{
+  font-family:'Klee One',cursive;
+  color:var(--lav);
+  text-decoration:none;
+  font-size:14px;
+  padding:7px 15px;
+  border-radius:999px;
+  background:var(--glass);
+  border:1px solid var(--glass-edge);
+  backdrop-filter:blur(6px);
+  transition:.25s;
+}
+nav a:hover{color:var(--pink);border-color:var(--pink);box-shadow:0 0 18px rgba(255,0,127,.35);}
+nav a.active{color:var(--pink);border-color:var(--pink);}
+nav a.lore{position:relative;color:#a9f5c2;border-color:rgba(120,255,180,.35);}
+nav a.lore::before{
+  content:'';position:absolute;inset:-6px -8px;border-radius:999px;z-index:-1;
+  background:radial-gradient(circle,rgba(64,255,150,.5),transparent 68%);
+  filter:blur(5px);opacity:.5;animation:loreGlow 3.4s ease-in-out infinite;
+}
+nav a.lore:hover{color:#d8ffdf;border-color:rgba(140,255,190,.6);box-shadow:0 0 22px rgba(64,255,150,.5);}
+@keyframes loreGlow{0%,100%{opacity:.35;transform:scale(.96);}50%{opacity:.9;transform:scale(1.05);}}
+
+/* ---------- cabinet ---------- */
+.cabinet{
+  margin:44px auto 0;
+  padding:26px;
+  border-radius:26px;
+  background:linear-gradient(160deg,rgba(30,14,54,.55),rgba(13,6,20,.55));
+  border:1px solid var(--glass-edge);
+  backdrop-filter:blur(8px);
+  box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 0 60px rgba(217,0,255,.05);
+  position:relative;
+}
+.cabinet h2{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-weight:400;
+  font-size:28px;color:var(--lav);
+  margin-bottom:4px;
+}
+.cabinet .sub{
+  color:var(--mauve);font-size:13px;margin-bottom:22px;
+}
+.drawer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:16px;
+  perspective:900px;
+}
+.drawer{
+  position:relative;
+  height:118px;
+  border-radius:16px;
+  background:linear-gradient(180deg,#12081f,#0d0614);
+  border:1px solid var(--glass-edge);
+  cursor:pointer;
+  box-shadow:0 8px 22px rgba(0,0,0,.45);
+  transition:border-color .8s,box-shadow .8s;
+  perspective:800px;
+}
+.drawer:hover{border-color:rgba(196,169,232,.5);box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 24px rgba(255,0,127,.18);}
+.drawer .front{
+  position:absolute;inset:0;border-radius:16px;
+  background:linear-gradient(180deg,var(--panel),#150a24);
+  border:1px solid var(--glass-edge);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 1px 0 rgba(196,169,232,.12);
+  transform-origin:center top;
+  transition:transform 1.1s cubic-bezier(.2,.7,.3,1);
+  z-index:1;
+}
+.drawer:hover .front{transform:translateY(7px) rotateX(6deg);}
+.drawer .knob{
+  width:26px;height:10px;border-radius:6px;
+  background:linear-gradient(90deg,var(--mauve),var(--fuchsia));
+  box-shadow:0 0 12px rgba(255,0,127,.5);
+}
+.drawer.hidden-drawer .knob{opacity:.5;}
+/* a single cream card, barely peeking straight up */
+.drawer .card-stack{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:2;}
+.drawer .index-card{
+  position:absolute;left:10px;right:10px;top:24px;height:46px;
+  background:linear-gradient(180deg,#f7f2e8,#e8ddc5);
+  border-radius:4px;
+  box-shadow:0 3px 9px rgba(0,0,0,.55);
+  opacity:0;pointer-events:none;
+  transform:translateY(4px);
+  transition:transform 1.1s cubic-bezier(.2,.7,.3,1),opacity 1.1s ease;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Special Elite',monospace;
+  color:#3a2d18;font-size:12px;letter-spacing:.5px;
+}
+.drawer:hover .index-card{opacity:.8;pointer-events:auto;transform:translateY(-9px);}
+.drawer .index-card:hover{opacity:1;transform:translateY(-16px);}
+.drawer.unread{border-color:rgba(100,149,237,.5);box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 20px rgba(100,149,237,.25);}
+.drawer.unread:hover{border-color:rgba(135,180,255,.75);box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 28px rgba(100,149,237,.45);}
+
+/* ---------- drawer message overlay ---------- */
+#msgOverlay{
+  position:fixed;inset:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,2,10,.72);
+  backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;transition:.3s;
+}
+#msgOverlay.open{opacity:1;pointer-events:auto;}
+.note-card{
+  max-width:440px;width:90%;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(217,0,255,.14), transparent 60%),
+    linear-gradient(160deg,#231037,#150a24);
+  border:1px solid var(--glass-edge);
+  border-radius:20px;
+  padding:40px 34px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6), inset 0 0 40px rgba(217,0,255,.06);
+  position:relative;
+  transform:translateY(14px) scale(.97);
+  transition:.3s;
+}
+#msgOverlay.open .note-card{transform:translateY(0) scale(1);}
+.note-card .fr{
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:20px;color:var(--mauve);
+  letter-spacing:2px;margin-bottom:10px;
+}
+.note-card .msg-date{font-size:13px;color:var(--pink);margin-bottom:12px;letter-spacing:1px;font-style:italic;}
+.note-card .msg-link{display:inline-block;margin-top:16px;color:var(--fuchsia);font-size:15px;text-decoration:none;border:1px solid var(--glass-edge);padding:8px 18px;border-radius:999px;background:var(--glass);transition:.25s;}
+.note-card .msg-link:hover{box-shadow:0 0 18px rgba(217,0,255,.5);}
+.note-card #msgEdit{display:none;width:100%;min-height:90px;resize:vertical;background:rgba(255,255,255,.03);color:var(--lav);border:1px solid var(--glass-edge);border-radius:10px;padding:10px;font-family:'Klee One',cursive;font-size:15px;line-height:1.5;box-sizing:border-box;margin-top:2px;}
+.note-card .msg-editbar{display:none;gap:10px;align-items:center;justify-content:center;margin-top:12px;}
+.msg-editbar button{cursor:pointer;border:1px solid var(--glass-edge);border-radius:999px;padding:7px 16px;font-family:'Klee One',cursive;color:var(--pink);background:var(--glass);transition:.25s;}
+.msg-editbar button:hover{box-shadow:0 0 16px rgba(255,0,127,.4);}
+.msg-editbar .x{color:#ff8fa3;font-weight:700;}
+.msg-editbtn{margin-top:16px;cursor:pointer;border:1px solid var(--glass-edge);border-radius:999px;padding:6px 14px;font-family:'Klee One',cursive;color:var(--mauve);background:var(--glass);transition:.25s;display:none;}
+.msg-editbtn:hover{box-shadow:0 0 14px rgba(217,0,255,.4);}
+.note-card .msg{
+  font-size:clamp(17px,3vw,22px);
+  line-height:1.55;
+  color:var(--lav);
+  text-shadow:0 0 18px rgba(217,0,255,.25);
+  min-height:70px;
+}
+.note-card .close{
+  margin-top:24px;cursor:pointer;
+  font-family:'Klee One',cursive;
+  color:var(--pink);
+  background:var(--glass);
+  border:1px solid var(--glass-edge);
+  padding:8px 22px;border-radius:999px;
+  transition:.25s;
+}
+.note-card .close:hover{box-shadow:0 0 20px rgba(255,0,127,.4);}
+
+/* ---------- note wall (shared simple notes) ---------- */
+.note-wall{margin-top:26px;}
+.note-wall h3{font-family:'Klee One',cursive;color:var(--lav);font-size:18px;margin-bottom:12px;}
+.note-wall h3 i{color:var(--pink);}
+.notes-box{
+  border:1px dashed var(--glass-edge);
+  border-radius:16px;
+  padding:16px;
+  background:rgba(13,6,20,.4);
+  min-height:80px;
+  max-height:220px;overflow:auto;
+  text-align:left;
+  margin-bottom:14px;
+}
+.note-item{
+  font-size:14px;color:var(--lav);
+  padding:9px 12px;
+  border-radius:12px;
+  background:rgba(26,11,46,.5);
+  margin-bottom:8px;
+  border-left:3px solid var(--fuchsia);
+  line-height:1.4;
+}
+.note-item .who{display:block;font-size:11px;color:var(--mauve);margin-top:3px;letter-spacing:1px;}
+.note-form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.note-form input{
+  flex:1;min-width:220px;
+  background:rgba(13,6,20,.7);
+  border:1px solid var(--glass-edge);
+  border-radius:12px;
+  padding:11px 14px;
+  color:var(--lav);
+  font-family:'Klee One',cursive;font-size:14px;
+  outline:none;transition:.25s;
+}
+.note-form input:focus{border-color:var(--fuchsia);box-shadow:0 0 16px rgba(217,0,255,.3);}
+.note-form input::placeholder{color:var(--mauve);}
+.note-form button{
+  font-family:'Klee One',cursive;font-size:14px;
+  color:var(--dusk);
+  background:linear-gradient(90deg,var(--pink),var(--fuchsia));
+  border:none;border-radius:12px;padding:11px 20px;cursor:pointer;
+  transition:.25s;
+}
+.note-form button:hover{box-shadow:0 0 22px rgba(255,0,127,.5);}
+
+/* ---------- poetry alcove ---------- */
+.alcove{
+  margin:44px auto 0;
+  padding:30px;
+  border-radius:24px;
+  background:var(--glass);
+  border:1px solid var(--glass-edge);
+  backdrop-filter:blur(8px);
+  text-align:center;
+}
+.alcove h2{font-family:'UnifrakturMaguntia',cursive;font-weight:400;font-size:26px;color:var(--lav);}
+.poem{
+  font-family:'Klee One',cursive;
+  color:var(--lav);
+  font-size:clamp(16px,2.6vw,20px);
+  line-height:1.7;
+  font-style:italic;
+  margin:20px auto 6px;
+  max-width:560px;
+  min-height:90px;
+}
+.poem .src{display:block;font-style:normal;color:var(--mauve);font-size:13px;margin-top:12px;letter-spacing:1px;}
+#drawBtn{
+  margin-top:18px;
+  font-family:'Klee One',cursive;font-size:14px;
+  color:var(--lav);background:var(--glass);
+  border:1px solid var(--glass-edge);
+  padding:9px 22px;border-radius:999px;cursor:pointer;transition:.25s;
+}
+#drawBtn:hover{color:var(--pink);border-color:var(--pink);box-shadow:0 0 18px rgba(255,0,127,.35);}
+
+/* ---------- gallery ---------- */
+.gallery{
+  margin:44px auto 0;padding:30px;
+  border-radius:24px;background:var(--glass);
+  border:1px solid var(--glass-edge);backdrop-filter:blur(8px);
+}
+.gallery h2{font-family:'UnifrakturMaguntia',cursive;font-weight:400;font-size:26px;color:var(--lav);margin-bottom:18px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.gallery-grid img{
+  width:100%;height:210px;object-fit:cover;border-radius:16px;
+  border:1px solid var(--glass-edge);
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
+  transition:.3s;
+}
+.gallery-grid img:hover{transform:scale(1.02);border-color:var(--fuchsia);box-shadow:0 16px 40px rgba(217,0,255,.25);}
+
+/* ---------- footer ---------- */
+footer{margin-top:60px;color:var(--mauve);font-size:13px;letter-spacing:1px;}
+
+.section{display:none;}
+.section.active{display:block;}
+
+/* ---------- lore ---------- */
+.lore{
+  margin:44px auto 0;max-width:760px;padding:34px;
+  border-radius:24px;background:var(--glass);
+  border:1px solid rgba(120,255,180,.28);
+  backdrop-filter:blur(8px);
+  box-shadow:0 0 40px rgba(64,255,150,.12);
+  text-align:center;
+}
+.lore .seal{
+  width:64px;height:64px;margin:0 auto 18px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(120,255,180,.5),rgba(10,60,30,.6));
+  border:1px solid rgba(140,255,190,.5);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 30px rgba(64,255,150,.5);
+  animation:loreGlow 3.4s ease-in-out infinite;
+}
+.lore .seal svg{width:30px;height:30px;stroke:#e6fff0;fill:none;stroke-width:1.5;}
+.lore h2{font-family:'UnifrakturMaguntia',cursive;font-weight:400;font-size:34px;color:#d8ffdf;letter-spacing:2px;margin-bottom:6px;}
+.lore .sub{color:#8fcaa4;font-size:13px;letter-spacing:2px;margin-bottom:26px;}
+.lore .para{color:var(--lav);font-size:15.5px;line-height:1.85;text-align:left;margin:0 auto 20px;max-width:620px;}
+.lore .para b{color:#e6fff0;font-weight:600;}
+.lore .para .g{color:#9ef5c2;}
+.lore .para .p{color:#f2b8ff;}
+.lore .para .v{color:#b7a9ff;}
+.lore .para .y{color:#ffe9a8;}
+.lore .siblings{
+  margin:26px auto 0;max-width:620px;text-align:left;
+  border-top:1px dashed rgba(140,255,190,.3);padding-top:20px;
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+}
+.siblings .chip{
+  font-family:'Klee One',cursive;font-size:13px;color:#d8ffdf;
+  padding:6px 14px;border-radius:999px;
+  background:rgba(20,70,45,.4);border:1px solid rgba(120,255,180,.35);
+}
+
+/* ---------- interviews: character rooms ---------- */
+.interview-wrap{
+  margin:44px auto 0;padding:30px;
+  border-radius:24px;background:var(--glass);
+  border:1px solid var(--glass-edge);backdrop-filter:blur(8px);
+}
+.room-bar{
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
+  margin-bottom:26px;
+}
+.room-medal{
+  width:84px;cursor:pointer;text-align:center;
+  background:transparent;border:none;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:.55;transition:.25s;
+}
+.room-medal:hover{opacity:.95;}
+.room-medal.active{opacity:1;}
+.room-medal .disc{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(160deg,rgba(26,11,46,.9),rgba(13,6,20,.9));
+  border:1px solid var(--glass-edge);
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;
+  box-shadow:0 8px 22px rgba(0,0,0,.45);
+  transition:.25s;
+}
+.room-medal.active .disc{
+  border-color:var(--fuchsia);
+  box-shadow:0 0 26px rgba(217,0,255,.45), inset 0 0 18px rgba(255,0,127,.15);
+}
+.room-medal:hover .disc{transform:translateY(-3px) scale(1.05);border-color:var(--fuchsia);}
+.room-medal .rn{font-family:'Klee One',cursive;font-size:13px;color:var(--lav);letter-spacing:1px;}
+.room-medal.active .rn{color:var(--pink);}
+.room-medal.lore-medal .disc{
+  border-color:rgba(120,255,180,.5);
+  box-shadow:0 0 20px rgba(64,255,150,.45), inset 0 0 14px rgba(64,255,150,.15);
+  animation:loreGlow 3.4s ease-in-out infinite;
+}
+.room-medal.lore-medal .rn{color:#a9f5c2;}
+.room-medal.lore-medal:hover .disc{transform:translateY(-3px) scale(1.05);border-color:#7cffb0;box-shadow:0 0 26px rgba(64,255,150,.6);}
+.room-medal.lore-medal:hover .rn{color:#d8ffdf;}
+.hans-grid{
+  display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start;
+}
+@media (max-width:640px){.hans-grid{grid-template-columns:1fr;}}
+.portrait-frame{
+  aspect-ratio:3/4;border-radius:18px;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(217,0,255,.12), transparent 60%),
+    linear-gradient(160deg,#1f0f33,#0d0614);
+  border:1px dashed var(--fuchsia);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;padding:16px;text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.45), inset 0 0 40px rgba(217,0,255,.05);
+}
+.portrait-frame.has-img{border-style:solid;}
+.portrait-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.portrait-frame .ph-label{font-family:'UnifrakturMaguntia',cursive;font-size:26px;color:var(--lav);text-shadow:0 0 18px rgba(255,0,127,.4);}
+.portrait-frame .ph-sub{font-size:12px;color:var(--mauve);letter-spacing:2px;text-transform:uppercase;}
+.portrait-frame .ph-tip{font-size:11px;color:var(--pink);opacity:.8;margin-top:8px;font-style:italic;}
+.portrait-frame .ph-icon{font-size:34px;opacity:.75;filter:drop-shadow(0 0 12px rgba(217,0,255,.5));}
+.portrait-frame.has-img .ph-label,.portrait-frame.has-img .ph-sub,.portrait-frame.has-img .ph-tip,.portrait-frame.has-img .ph-icon{display:none;}
+.portrait-frame.dragover{border-color:var(--pink);box-shadow:0 0 30px rgba(255,0,127,.5), inset 0 0 40px rgba(255,0,127,.15);}
+.chat-panel{
+  background:rgba(13,6,20,.45);
+  border:1px solid var(--glass-edge);border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column;min-height:420px;
+}
+.chat-head{
+  font-family:'UnifrakturMaguntia',cursive;font-size:20px;color:var(--lav);
+  padding:16px 20px;text-align:center;
+  border-bottom:1px solid var(--glass-edge);
+  background:rgba(26,11,46,.5);
+  letter-spacing:1px;
+}
+.chat-log{padding:20px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:14px;}
+.chat-msg{max-width:82%;padding:12px 16px;border-radius:16px;line-height:1.5;font-size:14.5px;}
+.chat-msg.them{
+  align-self:flex-start;
+  background:linear-gradient(160deg,rgba(26,11,46,.9),rgba(13,6,20,.9));
+  border:1px solid var(--glass-edge);
+  border-top-left-radius:4px;color:var(--lav);
+}
+.chat-msg.you{
+  align-self:flex-end;
+  background:linear-gradient(90deg,rgba(255,0,127,.85),rgba(217,0,255,.85));
+  border-top-right-radius:4px;color:#0d0614;
+}
+.chat-msg .who{display:block;font-size:10.5px;color:var(--mauve);margin-bottom:4px;letter-spacing:1.5px;text-transform:uppercase;}
+.chat-msg.you .who{color:#2a0030;}
+.chat-foot{padding:11px 20px;text-align:center;font-size:11.5px;color:var(--mauve);border-top:1px solid var(--glass-edge);letter-spacing:1px;}
+.chat-controls{padding:16px 16px 18px;border-top:1px solid var(--glass-edge);display:flex;flex-direction:column;gap:12px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.chip{
+  font-family:'Klee One',cursive;font-size:12.5px;color:var(--lav);
+  background:rgba(26,11,46,.7);border:1px solid var(--glass-edge);
+  padding:7px 13px;border-radius:999px;cursor:pointer;transition:.22s;
+}
+.chip:hover{color:var(--dusk);border-color:var(--pink);background:linear-gradient(90deg,var(--pink),var(--fuchsia));}
+.input-row{display:flex;gap:10px;}
+.input-row input{
+  flex:1;background:rgba(13,6,20,.7);border:1px solid var(--glass-edge);
+  border-radius:12px;padding:12px 14px;color:var(--lav);
+  font-family:'Klee One',cursive;font-size:14px;outline:none;transition:.25s;
+}
+.input-row input:focus{border-color:var(--fuchsia);box-shadow:0 0 16px rgba(217,0,255,.3);}
+.input-row input::placeholder{color:var(--mauve);}
+.input-row button{
+  font-family:'Klee One',cursive;font-size:14px;color:var(--dusk);
+  background:linear-gradient(90deg,var(--pink),var(--fuchsia));
+  border:none;border-radius:12px;padding:0 20px;cursor:pointer;transition:.25s;
+}
+.input-row button:hover{box-shadow:0 0 22px rgba(255,0,127,.5);}
+#observatory{max-width:1000px;margin:0 auto;text-align:left;}
+.obs-panel{
+  position:relative;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(217,0,255,.10), transparent 60%),
+    linear-gradient(160deg,#1a0b2e,#0d0614);
+  border:1px solid var(--glass-edge);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 0 30px rgba(217,0,255,.12);
+}
+.obs-screen::after{
+  content:"";
+  position:absolute;inset:0;border-radius:18px;pointer-events:none;
+  background:radial-gradient(circle at var(--sx,50%) var(--sy,40%), transparent 92px, rgba(0,0,0,.14) 150px, rgba(0,0,0,.84) 235px);
+  z-index:2;
+}
+.obs-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:6px;}
+.obs-controls .spacer{flex:1;}
+.obs-panel button{
+  cursor:pointer;border:none;padding:8px 13px;border-radius:8px;
+  font-family:'Klee One',cursive;
+  background:var(--glass);color:var(--pink);border:1px solid var(--glass-edge);transition:.25s;
+}
+.obs-panel button:hover{box-shadow:0 0 18px rgba(255,0,127,.45);}
+.obs-small{padding:6px 10px;font-size:.85rem;}
+.obs-month-row{display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:12px;}
+.obs-month-title{font-family:'UnifrakturMaguntia',cursive;font-size:26px;color:var(--pink);min-width:220px;text-align:center;letter-spacing:1px;}
+.obs-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:10px;}
+.obs-weekdays div{text-align:center;font-weight:700;color:var(--lav);font-size:.9rem;letter-spacing:1px;}
+.obs-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;position:relative;z-index:1;}
+.obs-day{
+  min-height:96px;border:1px solid #4a3a63;border-radius:10px;padding:8px;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(217,0,255,.16), transparent 60%),
+    linear-gradient(160deg,#241139,#150a24);
+  transition:.25s;overflow:hidden;position:relative;
+  cursor:pointer;
+}
+.obs-day:hover{
+  transform:scale(1.03);
+  border-color:var(--fuchsia);
+  box-shadow:0 0 14px var(--fuchsia),0 0 28px rgba(255,0,127,.4);
+  z-index:3;
+}
+.obs-date{font-weight:700;color:var(--pink);display:block;text-shadow:0 0 10px rgba(255,0,127,.5);}
+.obs-event{margin-top:6px;padding:5px;border-radius:8px;background:rgba(255,105,180,.12);font-size:.8rem;cursor:pointer;color:var(--lav);}
+.obs-today{border:2px solid var(--pink);}
+.obs-constellation{min-height:300px;position:relative;z-index:1;}
+.obs-cstar{position:absolute;width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 10px var(--pink);cursor:default;}
+.obs-form-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+.obs-form-row input[type=text],.obs-form-row input[type=date],#observatory select{
+  padding:9px;border-radius:8px;border:1px solid var(--glass-edge);
+  background:rgba(255,255,255,.03);color:var(--lav);flex:1;min-width:0;font-family:'Klee One',cursive;
+}
+.obs-modal-backdrop{position:fixed;inset:0;background:rgba(5,2,10,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:60;}
+.obs-modal{width:min(520px,92%);background:linear-gradient(160deg,#231037,#150a24);border:1px solid var(--glass-edge);border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.7);}
+.obs-modal h3{margin:0 0 10px;color:var(--pink);font-family:'Klee One',cursive;}
+.obs-event-list{margin-top:12px;max-height:220px;overflow:auto;}
+.obs-event-item{display:flex;gap:8px;align-items:flex-start;padding:8px;border-radius:8px;background:rgba(255,255,255,.03);margin-bottom:8px;}
+.obs-event-text{flex:1;}
+.obs-delete-btn{background:#7a2438;color:#ffc0cb;border:none;padding:6px 9px;border-radius:6px;cursor:pointer;}
+.obs-danger{background:#7a2438;color:#ffc0cb;}
+@media (max-width:700px){.obs-calendar{grid-template-columns:repeat(2,1fr)}.obs-weekdays{display:none}.obs-day{min-height:70px}}
+/* ---------- spider-web loader ---------- */
+#loader{
+  position:fixed;inset:0;z-index:2000;
+  background:radial-gradient(120% 90% at 50% 35%, #1c0f2e 0%, #0d0614 60%, #0a0410 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  transition:opacity .6s ease;
+}
+#loader.done{opacity:0;pointer-events:none;}
+#webSvg{width:min(46vh,300px);height:auto;overflow:visible;}
+#webSvg .spoke{stroke:#b79ae0;stroke-width:1;opacity:0;}
+#webSvg .frame{stroke:#cdb0f0;stroke-width:1.4;fill:none;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:.9;}
+#webSvg .spiral{stroke:#e6d6ff;stroke-width:.9;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;}
+#webSvg .dew{fill:#ffffff;opacity:0;}
+#webSvg .spider .body{fill:#1a0b2e;stroke:#ff8ecb;stroke-width:1;}
+#webSvg .spider .legs{stroke:#ff9ec7;stroke-width:1;fill:none;stroke-linecap:round;}
+.loader-word{
+  font-family:'Klee One',cursive;color:var(--mauve);
+  font-size:14px;letter-spacing:3px;opacity:0;
+  animation:loaderWord 7s ease forwards;
+}
+@keyframes loaderWord{0%,70%{opacity:0;}90%,100%{opacity:.9;}}
+@keyframes spokeIn{from{opacity:0;}to{opacity:.55;}}
+@keyframes frameDraw{from{stroke-dashoffset:1;}to{stroke-dashoffset:0;}}
+@keyframes spiralDraw{from{stroke-dashoffset:1;}to{stroke-dashoffset:0;}}
+@keyframes dewIn{from{opacity:0;}to{opacity:.8;}}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <svg id="webSvg" viewBox="0 0 400 400"></svg>
+  <p class="loader-word">spinning the web&hellip;</p>
+</div>
+<script>
+(function(){
+  var CX=200, CY=200, R=166, N=12, TURNS=11;
+  function pnt(k,angShift,r){
+    var a=(k/N)*Math.PI*2+angShift;
+    return [(CX+r*Math.cos(a)).toFixed(1),(CY+r*Math.sin(a)).toFixed(1)];
+  }
+  var svg=document.getElementById('webSvg');
+  var spokes='';
+  for(var i=0;i<N;i++){
+    var p=pnt(i,0,R);
+    spokes+='<line class="spoke" x1="'+CX+'" y1="'+CY+'" x2="'+p[0]+'" y2="'+p[1]+'"/>';
+  }
+  var frame='';
+  for(var i=0;i<N;i++){ var p=pnt(i,0,R); frame+=p[0]+','+p[1]+' '; }
+  var sp=[];
+  var steps=N*TURNS;
+  for(var s=0;s<=steps;s++){
+    var t=s/steps;
+    var k=Math.floor(s/N), i2=s%N;
+    var angShift=(k%2)? Math.PI/N : 0;
+    var p=pnt(i2,angShift,R*(1-t));
+    sp.push(p[0]+','+p[1]);
+  }
+  sp.push(CX+','+CY);
+  var spinPath='M '+sp.join(' L ');
+  var dews='';
+  for(var j=0;j<8;j++){
+    var dp=pnt(Math.floor(j*N/8),0,R*(0.55+0.4*((j%3)/2)));
+    dews+='<circle class="dew" cx="'+dp[0]+'" cy="'+dp[1]+'" r="1.6"/>';
+  }
+  var spider='<g class="spider"><circle class="body" cx="0" cy="0" r="4.6"/><path class="legs" d="M-3.4-2 L-8-5 L-6.5-9 M3.4-2 L8-5 L6.5-9 M-3.4 2 L-8 5 L-6.5 9 M3.4 2 L8 5 L6.5 9 M0-4.6 L0-10 M0 4.6 L0 10"/><animateMotion dur="6.4s" begin="0.1s" fill="freeze" rotate="auto"><mpath href="#spinPath"/></animateMotion></g>';
+  var html=spokes+'<polygon class="frame" points="'+frame+'"/>'+'<polyline class="spiral" pathLength="1" points="'+sp.join(' ')+'"/>'+dews+spider;
+  var defs='<defs><path id="spinPath" pathLength="1" d="'+spinPath+'"/></defs>';
+  svg.innerHTML=defs+html;
+  var st=document.createElement('style');
+  st.textContent=
+    '#webSvg .spoke{animation:spokeIn .5s ease forwards;}'+
+    '#webSvg .spoke:nth-child(2){animation-delay:.1s;}'+
+    '#webSvg .spoke:nth-child(3){animation-delay:.2s;}'+
+    '#webSvg .spoke:nth-child(4){animation-delay:.3s;}'+
+    '#webSvg .frame{animation:frameDraw 1.2s ease .3s forwards;}'+
+    '#webSvg .spiral{animation:spiralDraw 6.2s ease-in-out .3s forwards;}'+
+    '#webSvg .dew{animation:dewIn 1s ease .6s forwards;}';
+  svg.appendChild(st);
+  setTimeout(function(){
+    var l=document.getElementById('loader');
+    l.classList.add('done');
+    setTimeout(function(){ l.parentNode.removeChild(l); },700);
+  }, 7000);
+})();
+</script>
+
+<div id="rainCtn"></div>
+<div id="glintCtn"></div>
+
+<div class="wrap">
+  <header>
+    <h1>Curiosity Dreams</h1>
+    <p class="tagline">a quiet corner for small kindnesses &amp; secret notes</p>
+    <nav>
+      <a href="#" data-sec="cabinet" class="active">the cabinet</a>
+      <a href="#" data-sec="poetry">poetry &amp; whispers</a>
+      <a href="#" data-sec="gallery">gallery</a>
+      <a href="#" data-sec="interview">interviews</a>
+      <a href="#" data-sec="observatory">&#10022; observatory</a>
+    </nav>
+  </header>
+
+  <section id="cabinet" class="section active">
+    <div class="cabinet">
+      <div id="drawerGrid"></div>
+      <div class="note-wall">
+        <h3><i class="fa-solid fa-feather-pointed"></i> a drawer of small notes</h3>
+        <div class="notes-box" id="notesBox"></div>
+        <form class="note-form" id="noteForm">
+          <input id="noteInput" type="text" maxlength="140" placeholder="leave a little kindness for a stranger...">
+          <button type="submit">tuck it in</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="poetry" class="section">
+    <div class="alcove">
+      <h2 id="poemType" class="fr" style="font-family:'UnifrakturMaguntia',cursive;font-size:20px;color:var(--mauve);letter-spacing:2px;"></h2>
+      <p id="poemEl" style="font-size:clamp(16px,2.4vw,20px);color:var(--lav);line-height:1.6;min-height:60px;margin:12px 0 20px;"></p>
+      <button id="drawBtn" class="close" style="cursor:pointer;font-family:'Klee One',cursive;color:var(--pink);background:var(--glass);border:1px solid var(--glass-edge);padding:9px 22px;border-radius:999px;">draw another</button>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <div class="gallery">
+      <h2>little scenes I keep</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <section id="interview" class="section">
+    <div class="interview-wrap">
+      <div class="room-bar" id="roomBar"></div>
+      <div id="roomCtn"></div>
+    </div>
+  </section>
+
+  <section id="lore" class="section">
+    <div class="lore">
+      <div class="seal">
+        <svg viewBox="0 0 24 24"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.2 7.4 4.4 5.4.8.8 9.5 4.7 5.8 5.6.4 8.2 3z" fill="none" stroke-width="1.5"/></svg>
+      </div>
+      <h2>the lore</h2>
+      <div class="sub">the truth the sisters &amp; brothers carry</div>
+      <p class="para">
+        Long ago, they were all taken from an orphanage in <b>little Paris</b> — a room of children nobody had come back for — by men in labcoats who carried clipboards and spoke of them in numbers. In that lab the children were given injections that bloomed through their hair in odd bright streaks: some turned <span class="g">green</span>, some <span class="p">purple</span>, some <span class="v">lavender</span>, some <span class="y">yellow</span>. There were other experiments too, ones they'd rather not talk about, or remember. They spent their whole young lives behind that glass.
+      </p>
+      <p class="para">
+        Until one night <b>Miki</b> gnawed her way out. She spilled into an alley, bleeding and trembling — and there was <b>Yeshua</b>, come riding down the dark on a <b>glowing white pegasus</b>. He did not ask her name. He carried her back, threw open every door, and released them all — her friends, her siblings, everyone.
+      </p>
+      <p class="para">
+        To this day the scientists have no idea what happened. Money is at stake, and they have gambled on those lives, so they are still looking. But they will never find them — because the siblings did not simply run away. Yeshua gave them a new home, one that does not exist on this earth at all: an entire universe of their own, called <b style="color:#a9f5c2;">the CafeDreamr</b>.
+      </p>
+      <div class="siblings">
+        <span class="chip">&#128425; Miki</span>
+        <span class="chip">&#9749; Hans</span>
+        <span class="chip">&#128039; Chari</span>
+        <span class="chip">&#11088; Star</span>
+        <span class="chip">&#127807; Milo</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="observatory" class="section">
+    <div class="obs-panel obs-controls">
+      <button onclick="obsChangeMonth(-1)">&#9664; prev</button>
+      <button onclick="obsChangeMonth(1)">next &#9654;</button>
+      <span class="spacer"></span>
+      <select id="obsYearSelect" onchange="obsJumpToYear()" class="obs-small"></select>
+      <button onclick="obsToggleConstellation()" id="obsConstBtn">constellation</button>
+      <button onclick="obsClearAllConfirm()" class="obs-danger">clear all</button>
+    </div>
+
+    <div class="obs-panel obs-screen">
+      <div class="obs-month-row">
+        <button onclick="obsChangeMonth(-1)">&#9664;</button>
+        <div class="obs-month-title" id="obsMonthTitle"></div>
+        <button onclick="obsChangeMonth(1)">&#9654;</button>
+      </div>
+      <div class="obs-weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+      <div class="obs-calendar" id="obsCalendar"></div>
+      <div class="obs-constellation" id="obsConstellation" style="display:none"></div>
+    </div>
+
+    <div class="obs-panel">
+      <h3 style="font-family:'Klee One',cursive;color:var(--pink);margin:0 0 6px">add a cosmic event</h3>
+      <div class="obs-form-row">
+        <input type="date" id="obsEventDate">
+        <input type="text" id="obsEventText" placeholder="tea ceremony, art session...">
+        <button onclick="obsAddEvent()">save event</button>
+      </div>
+    </div>
+
+    <div id="obsModalRoot" style="display:none"></div>
+  </section>
+
+  <footer>the web remembers &middot; one small kindness ripples outward</footer>
+</div>
+
+<div id="msgOverlay">
+  <div class="note-card">
+    <div class="fr" id="msgTitle">read me</div>
+    <div class="msg-date" id="msgDate"></div>
+    <div class="msg" id="msgText"></div>
+    <a class="msg-link" id="msgLink" href="https://cafedreamr.art" target="_blank" rel="noopener">cafedreamr.art</a>
+    <textarea id="msgEdit" placeholder="write your own note to keep here..."></textarea>
+    <div class="msg-editbar" id="msgEditBar"><button id="msgSaveBtn">save note</button><button id="msgDeleteBtn" class="x" title="delete this note">&#10005;</button></div>
+    <button class="msg-editbtn" id="msgEditBtn" title="edit this note">&#9998; edit</button>
+    <button class="close" id="msgClose">gently close</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DRAWERS = [
+    {label:'welcome', cards:[
+      'You are needed here. More than you know.',
+      'You arrived exactly when you were meant to. Let that be the seed of something growing.'
+    ], hidden:false},
+    {label:'rest', cards:[
+      'Rest is not weakness. It is how growth takes root in the dark.'
+    ], hidden:false},
+    {label:'ripple', cards:[
+      'Your small kindness today will ripple farther than you will ever see.',
+      'Growth is quiet. It waters itself with every small, patient choice.',
+      'What you tend in secret will one day be seen by everyone.'
+    ], hidden:false},
+    {label:'small', cards:[
+      'You do not have to be big to matter.',
+      'A seed is small. Look what it becomes.'
+    ], hidden:false},
+    {label:'survived', cards:[
+      'You have already survived every hardest day you have ever had.',
+      'Every new season of you is proof that growth is already at work.'
+    ], hidden:false},
+    {label:'gentle', cards:[
+      'The world is a little gentler with you in it.',
+      'Gentleness is not weakness \u2014 it is growth with its arms open.'
+    ], hidden:false},
+    {label:'lighter', cards:[
+      'Someone carries a lighter step today because you exist.'
+    ], hidden:false},
+    {label:'enough', cards:[
+      'You are enough, right now, exactly as you are.',
+      'And still you grow \u2014 not because you must, but because you are alive and becoming.'
+    ], hidden:false},
+    {label:'secret', cards:[
+      'This one was left here for you, on purpose, at this exact moment.',
+      'Growth asks nothing of you but that you keep showing up.',
+      'Desirable results are simply the garden of many small, faithful days.'
+    ], hidden:true},
+    {label:'', key:'mine', editable:true, cards:[
+      'Shhh. Some drawers are only for the ones who look twice.',
+      'Even hidden things grow toward the light.'
+    ], hidden:true}
+  ];
+  var SHAKESPEARE = [
+    'Though she be but little, she is fierce.',
+    'Love all, trust a few, do wrong to none.',
+    'We know what we are, but know not what we may be.',
+    'The course of true love never did run smooth.',
+    'How far that little candle throws his beams! So shines a good deed in a naughty world.',
+    'There is nothing either good or bad, but thinking makes it so.',
+    'It is not in the stars to hold our destiny but in ourselves.'
+  ];
+  var HOLMES = [
+    'When you have eliminated the impossible, whatever remains, however improbable, must be the truth.',
+    'It is a capital mistake to theorize before one has data.',
+    'There is nothing more deceptive than an obvious fact.',
+    'The world is full of obvious things which nobody by any chance ever observes.',
+    'Mediocrity knows nothing higher than itself, but talent instantly recognizes genius.',
+    'It has long been an axiom of mine that the little things are infinitely the most important.'
+  ];
+  var SEED_NOTES = [
+    {who:'the keeper', text:'you are part of the web. you always were.'},
+    {who:'a stranger', text:'today I chose kindness and it changed everything.'},
+    {who:'quiet one', text:'I felt small, and then I read this wall. thank you.'},
+    {who:'a friend', text:'somewhere out there, you are someone\'s reason to keep going.'}
+  ];
+
+  function el(id){return document.getElementById(id);}
+
+  function readVisited(){ try{return JSON.parse(localStorage.getItem('duskDrawersRead'))||[];}catch(e){return [];} }
+  function markVisited(label){ var a=readVisited(); if(a.indexOf(label)<0){ a.push(label); try{localStorage.setItem('duskDrawersRead',JSON.stringify(a));}catch(e){} } }
+
+  function buildDrawers(){
+    var grid = el('drawerGrid');
+    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;perspective:900px;';
+    DRAWERS.forEach(function(d){
+      var read = readVisited();
+      var b = document.createElement('button');
+      b.type='button';
+      b.className = 'drawer' + (d.hidden?' hidden-drawer':'') + (read.indexOf(d.label)<0 ? ' unread':'');
+      b.innerHTML = '<span class="front"><span class="knob"></span></span><span class="card-stack"></span>';
+      var stack = b.querySelector('.card-stack');
+      var card = document.createElement('span');
+      card.className = 'index-card';
+      card.textContent = d.label || '\u2014';
+      card.addEventListener('click', function(e){ e.stopPropagation(); openNote(d, 0); });
+      stack.appendChild(card);
+      b.addEventListener('click', function(){ openNote(d, 0); });
+      grid.appendChild(b);
+    });
+  }
+
+  var currentNoteKey = null;
+  function loadNote(k){ try{return localStorage.getItem('duskDrawerNote_'+k)||'';}catch(e){return '';} }
+  function saveNote(k,v){ try{localStorage.setItem('duskDrawerNote_'+k,v);}catch(e){} }
+  function delNote(k){ try{localStorage.removeItem('duskDrawerNote_'+k);}catch(e){} }
+  function enterEdit(){ el('msgText').style.display='none'; el('msgEdit').style.display='block'; el('msgEditBar').style.display='flex'; }
+  function exitEdit(){ el('msgText').style.display=''; el('msgEdit').style.display='none'; el('msgEditBar').style.display='none'; }
+
+  function openNote(d, ci){
+    var today = new Date();
+    el('msgTitle').textContent = d.editable ? 'your own drawer' : 'read me';
+    el('msgDate').textContent = 'on this day, ' + today.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'}) + ' \u2014 you are blessed.';
+    currentNoteKey = d.editable ? d.key : null;
+    var saved = d.editable ? loadNote(d.key) : '';
+    el('msgText').textContent = saved || d.cards[ci % d.cards.length];
+    el('msgEdit').value = saved || d.cards[ci % d.cards.length];
+    el('msgLink').style.display = d.editable ? 'none' : 'inline-block';
+    el('msgEditBtn').style.display = d.editable ? 'inline-block' : 'none';
+    exitEdit();
+    el('msgOverlay').classList.add('open');
+    if(d.label){
+      markVisited(d.label);
+      document.querySelectorAll('.drawer').forEach(function(btn){
+        var cd = btn.querySelector('.index-card');
+        if(cd && cd.textContent === d.label){ btn.classList.remove('unread'); }
+      });
+    }
+  }
+  el('msgEditBtn').addEventListener('click', function(){ if(!currentNoteKey) return; el('msgEdit').value = el('msgText').textContent; enterEdit(); });
+  el('msgSaveBtn').addEventListener('click', function(){ if(!currentNoteKey) return; var v = el('msgEdit').value.trim(); if(v){ saveNote(currentNoteKey, v); el('msgText').textContent = v; } exitEdit(); });
+  el('msgDeleteBtn').addEventListener('click', function(){ if(!currentNoteKey) return; delNote(currentNoteKey); el('msgText').textContent = 'your note is gone. leave a new one when you are ready.'; exitEdit(); });
+  el('msgClose').addEventListener('click', function(){ el('msgOverlay').classList.remove('open'); });
+  el('msgOverlay').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+
+  function loadNotes(){
+    var raw;
+    try{ raw = JSON.parse(localStorage.getItem('duskNotes') || 'null'); }catch(e){ raw=null; }
+    if(!raw || !raw.length){ raw = SEED_NOTES.slice(); saveNotes(raw); }
+    return raw;
+  }
+  function saveNotes(arr){
+    try{ localStorage.setItem('duskNotes', JSON.stringify(arr)); }catch(e){}
+  }
+  function renderNotes(){
+    var notes = loadNotes();
+    var box = el('notesBox');
+    box.innerHTML = '';
+    var recent = notes.slice(-6).reverse();
+    recent.forEach(function(n){
+      var d = document.createElement('div');
+      d.className='note-item';
+      d.innerHTML = escapeHtml(n.text) + '<span class="who">' + escapeHtml(n.who) + '</span>';
+      box.appendChild(d);
+    });
+    if(!recent.length){
+      box.innerHTML = '<div class="note-item">be the first to tuck a kindness in.<span class="who">the keeper</span></div>';
+    }
+  }
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  el('noteForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var inp = el('noteInput');
+    var v = inp.value.trim();
+    if(!v) return;
+    var notes = loadNotes();
+    notes.push({who:'a visitor', text:v});
+    saveNotes(notes);
+    inp.value='';
+    renderNotes();
+    el('noteForm').style.boxShadow='0 0 24px rgba(255,0,127,.4)';
+    setTimeout(function(){ el('noteForm').style.boxShadow=''; },600);
+  });
+
+  function drawPoem(){
+    var sh = Math.random() < 0.5;
+    var arr = sh ? SHAKESPEARE : HOLMES;
+    var pick = arr[Math.floor(Math.random()*arr.length)];
+    el('poemType').textContent = sh ? 'a shakespeare whisper' : 'a holmesian hunch';
+    el('poemEl').textContent = '\u201C' + pick + '\u201D';
+  }
+  el('drawBtn').addEventListener('click', drawPoem);
+  drawPoem();
+
+  function buildGallery(){
+    var grid = el('galleryGrid');
+    var tags = [
+      'nature,moon','flowers,dusk','forest,calm','lake,night',
+      'sky,stars','garden,calm','field,sunset','river,dawn'
+    ];
+    var tiles = [];
+    for(var i=0;i<6;i++){
+      var img = document.createElement('img');
+      img.alt = 'a peaceful scene';
+      img.loading = 'lazy';
+      grid.appendChild(img);
+      tiles.push(img);
+    }
+    function refresh(){
+      var pool = tags.slice();
+      for(var i=pool.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t; }
+      tiles.forEach(function(img, idx){
+        var t = pool[idx % pool.length];
+        img.src = 'https://loremflickr.com/768/512/'+t+'?lock='+Math.random();
+      });
+    }
+    refresh();
+    setInterval(refresh, 5*60*1000);
+  }
+
+  // nav
+  document.querySelectorAll('nav a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      document.querySelectorAll('nav a').forEach(function(x){x.classList.remove('active');});
+      this.classList.add('active');
+      document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+      el(this.dataset.sec).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  // ambient rain
+  (function makeRain(){
+    var ctn = el('rainCtn');
+    for(var i=0;i<40;i++){
+      var d = document.createElement('div');
+      d.className='rain-drop';
+      d.style.left = Math.random()*100+'%';
+      d.style.animationDuration = (1.4+Math.random()*1.6)+'s';
+      d.style.animationDelay = (-Math.random()*3)+'s';
+      ctn.appendChild(d);
+    }
+  })();
+  // hologram glints
+  (function makeGlints(){
+    var ctn = el('glintCtn');
+    for(var i=0;i<18;i++){
+      var g = document.createElement('div');
+      g.className='glint';
+      g.style.left = Math.random()*100+'%';
+      g.style.top = Math.random()*100+'%';
+      g.style.animationDelay = (-Math.random()*9)+'s';
+      g.style.animationDuration = (6+Math.random()*6)+'s';
+      ctn.appendChild(g);
+    }
+  })();
+
+  // interviews: character rooms
+  // Each character is a room hidden behind an icon medallion. REPLACE each chat
+  // array with the real conversation (mostly the character's responses):
+  //   {who:'them', text:'...'} for the character, {who:'you', text:'...'} for the other speaker.
+  var CHARS = [
+    {id:'miki',  name:'Miki',  tag:'keeper of the web',      icon:'\uD83D\uDD78\uFE0F', interactive:true, reply:'miki', chat:[
+      {who:'them', text:'ohh!! a visitor in my corner of the web. \u00B7\u2022\u00B7 hehe. welcome, welcome. i\u2019m Miki. i keep the dusk\u2019s threads from tangling \u2014 and i sing. what brings u here, cutie?'}
+    ]},
+    {id:'hans',  name:'Hans',  tag:'the redeemed vampire',     icon:'\u2615', interactive:true, chat:[
+      {who:'them', text:'Ah... a visitor. A rare thing in these archives. I had not expected company. Yet the kettle is warm, so perchance fate intended it. State thy purpose, an it please thee.'}
+    ]},
+    {id:'chari', name:'Chari', tag:'apprentice \u00B7 Star\u2019s sister',     icon:'\uD83D\uDC00', interactive:true, reply:'chari', chat:[
+      {who:'them', text:'Oh \u2014 hi. Sorry, I\u2019m Chari. Star\u2019s little sister, and her apprentice now. This one\u2019s my support rat; she keeps me steady. After the labs, my hands tremble sometimes. But we\u2019re safe here \u2014 Yeshua made sure of that.'}
+    ]},
+    {id:'star',  name:'Star',  tag:'runs the Cafe',          icon:'\u2B50', interactive:true, reply:'star', chat:[
+      {who:'them', text:'Hello. I\u2019m Star. I run the Cafe, and my little sister Chari is my apprentice. After Yeshua carried us out of the labs, I made this place a sanctuary. You are welcome here, always.'}
+    ]},
+    {id:'milo',  name:'Milo',  tag:'the herbal garden',     icon:'\uD83C\uDF3F', interactive:true, reply:'milo', chat:[
+      {who:'them', text:'Ah, welcome, friend. I\u2019m Milo. I tend the herbal garden and I meditate with Yeshua out among the mint. Sit with me \u2014 the mint calms the mind, and He calms the soul.'}
+    ]}
+  ];
+  var activeRoom = CHARS[0].id;
+
+  // Hans's conversational engine (built with ChatGPT by the keeper)
+  var HANS_ENGINE = {
+    responseMap: {
+      hi: [
+        "Ah... company. A rare thing in these archives. Whence dost thou come, and to what purpose?",
+        "Hmm. A living soul has wandered into my reading room. Art thou lost, or merely bold?",
+        "Thou dost intrude upon my solitude. Yet thou seemest gentle enough. Speak thy business, an it please thee.",
+        "Ah. Thou art here, then. I had not expected a guest. But the tea is warm, so perchance fate intended it."
+      ],
+      hello: [
+        "Salutations. I was in the middle of a rather fine chapter. What brings thee to disturb the quiet?",
+        "Good day to thee. Dost thou read, or merely wander? It shapes how we shall converse.",
+        "Ah, well met. The archives are not often so honoured. Sit — but quietly, I beg thee.",
+        "Greetings. I am Hans, keeper of this shelf and its secrets. And thou? What manner of soul art thou?"
+      ],
+      bye: [
+        "Farewell, then. Return to the world without. I shall remain here, among my books.",
+        "Thou leavest as thou camest — unannounced. Still, I bear thee no ill will. Go in peace.",
+        "Depart, then. The dust and I shall keep one another company.",
+        "Ta-ta. Mind the threshold — the world out there is less forgiving than my tea."
+      ],
+      "how are you": [
+        "Well enough, for one who reads by candlelight and counts the centuries as others count their years.",
+        "I am content. The kettle sings, the pages turn, and the world outside troubles me not.",
+        "As well as a redeemed soul may be — which is to say, quietly, and with gratitude.",
+        "Fairly well. My books are orderly, my tea is strong, and no one has tried to lock me in a laboratory of late."
+      ],
+      tea: [
+        "Tea is a discipline, not a refreshment. Choose thy leaf as thou wouldst choose a companion.",
+        "Each leaf carries the memory of its own hill and weather. Steep it kindly, and it will speak in return.",
+        "Thou speakest of tea? Then thou art not entirely without merit. Sit, and we shall converse properly."
+      ],
+      suggestions: [
+        "For calm, a fine chamomile steeped under a watchful moon. For wit, a smoky Lapsang.",
+        "I would recommend jasmine — subtle, patient, and quietly assured. Much like good company.",
+        "Earl Grey, should thou fancy a touch of citrus boldness. It suits a discerning palate."
+      ],
+      "black tea": [
+        "Assam is bold and honest; Darjeeling, refined and melancholy. Choose according to thy mood.",
+        "Black tea carries the gravity of the leaf. It asks nothing of thee but attention.",
+        "A Ceylon at dawn is a declaration. Drink it plainly, and let it speak for thee."
+      ],
+      "herbal teas": [
+        "The tisanes are gentle companions — they soothe without demanding. A fitting choice for a weary heart.",
+        "Peppermint for the troubled mind, chamomile for the restless night. They are the quiet counsellors.",
+        "Not strictly 'tea', mind — but I shall not belabour the point. They have their own gentle grace."
+      ],
+      pairings: [
+        "A good book, a quiet hour, and a warm cup. That is the truest pairing I know.",
+        "Sweet tea with bitter truth. It tempers the one against the other, and both are the better for it.",
+        "A fine biscuit, an open page, and no knock upon the door. Perfection itself."
+      ],
+      "earl grey": [
+        "Earl Grey is a gentleman's brew — bergamot, the very scent of civility. I am partial to it.",
+        "A touch of bergamot upon the tongue reminds one that refinement is its own reward.",
+        "I keep Earl Grey for the evenings. It pairs well with solitude and old poetry."
+      ],
+      "favorite tea": [
+        "I love each leaf after its own fashion. Yet I confess a fondness for the Earl Grey of my homeland.",
+        "It shifts with the hour — a strong Assam at dawn, a gentle white tea when the dusk falls.",
+        "Ask me again in another century. My answer is still steeping."
+      ],
+      redemption: [
+        "I was once bound in a cold laboratory, my spirit sunk in darkness. But Yeshua — King of Kings, Lord of Lords — found me there. His grace washed the cruelty from my blood, and I owe Him a gratitude I could spend a thousand years voicing. He left me tea, and books, and peace.",
+        "The scientists would have made a weapon of me. Instead, mercy — through Yeshua, my Lord — made me a reader. I trade in pages now, not in blood, and I thank Him daily that it is so.",
+        "Yeshua delivered me from the dark, King of Kings that He is, and I have not looked back. My gratitude to Him is boundless; my hunger now is only for literature, and for a properly warmed pot.",
+        "By the grace of Yeshua, Lord of Lords, I was redeemed. The thirst is gone; what remains is a love of quiet afternoons, well-turned phrases, and a heart ever thankful for His mercy."
+      ],
+      scientists: [
+        "I would rather not dwell upon those laboratories. They had no taste for beauty — only for the monstrous.",
+        "Those days are behind me. I keep no memory of them save to remind myself how far mercy has carried me.",
+        "The instruments, the cold... it was unworthy of a thinking soul. I prefer my instruments of leaf and bone china."
+      ],
+      past: [
+        "My past is a book I have closed, though I sometimes open it to marvel at how the ending changed.",
+        "I was not always gentle. The old Hans is a character I read about now, with a small shiver, from a safe distance."
+      ],
+      books: [
+        "The archives are my true dwelling. A shelf of good books is worth more to me than any throne.",
+        "I read to hear other souls think. It is the finest company I know — present when I wish, silent when I need.",
+        "Literature does not demand. It waits, patient as good tea, until thou art ready for it."
+      ],
+      solitude: [
+        "I am fond of solitude. It is not loneliness — it is the company of myself, at last, at peace.",
+        "I keep my own counsel and my own hours. A visitor is a pleasant interruption, nothing more.",
+        "In quiet, I am most myself. The world may hurry on; I shall remain here, reading."
+      ]
+    },
+    storyBranches: {
+      redemption: [
+        "They thought blood and dark magic made a soldier. But Yeshua — King of Kings, Lord of Lords — washed all that machinery clean out of me, and I thank Him with all my heart. Now my only labours are a warmed pot and an unturned page.",
+        "After my deliverance by Yeshua I traded test tubes for bone china. I have no great tale to tell — only that His grace found me, and I let it, and I am His grateful servant still.",
+        "Should thou wish to walk in true refinement, know first that I was a wretch saved by the Lord of Lords. Leave thy burdens at the door and take up a good book and a proper tea — and give thanks, as I do, to Yeshua."
+      ],
+      scientists: [
+        "They kept me cold, and would have shaped me into something cruel. I do not speak of it gladly.",
+        "A light came that the instruments could not measure. It undid their work, and I have been my own man since.",
+        "Now I pass my days quietly, in the archives, and no one tries to cage me. That is victory enough."
+      ],
+      tea: [
+        "If thou wouldst elevate thyself: warm the teapot first, never boil the leaf to death, and treat Earl Grey with proper reverence.",
+        "Water is the soul of the brew. Filtered spring is the minimum of decency; tap water is an insult to the leaf.",
+        "And never, I beg thee, leave the bag floating in the mug indefinitely. We are not savages."
+      ],
+      suggestions: [
+        "Decide first whether thou seekest energy or tranquility — then let the leaf answer.",
+        "For energy, a bold Assam. For peace, chamomile gathered under a calm moon.",
+        "Or, should thou embrace a little melancholy, a smoky Lapsang Souchong."
+      ]
+    },
+    triggers: {
+      hi: ["hi", "hey"],
+      hello: ["hello", "greetings", "good day"],
+      bye: ["bye", "goodbye", "see you", "later"],
+      "how are you": ["how are you", "how's it going", "how do you do"],
+      "tell me more": ["tell me more", "more", "explain", "elaborate", "go on", "continue"],
+      "yes": ["yes", "yeah", "sure", "indeed", "absolutely"],
+      "ok": ["ok", "okay", "fine", "alright"],
+      tea: ["tea", "types of tea", "your tea"],
+      suggestions: ["suggestions", "recommend", "what should i try", "tea ideas"],
+      "black tea": ["black tea", "dark tea", "strong tea"],
+      "herbal teas": ["herbal", "herbal tea", "no caffeine", "caffeine-free"],
+      pairings: ["pair", "pairings", "tea with food", "what goes with"],
+      "earl grey": ["earl grey", "earlgray", "bergamot"],
+      "favorite tea": ["favorite tea", "your favorite", "best tea"],
+      quote: ["quote", "say something", "dracula", "random quote"],
+      books: ["read", "book", "books", "literature", "poetry"],
+      solitude: ["alone", "solitude", "quiet", "lonely"],
+      redemption: ["yeshua", "redeemed", "grace", "saved", "rescue", "deliverance", "vampire"],
+      scientists: ["mad scientist", "laboratory", "scientists", "experiment"],
+      past: ["your past", "history", "origin", "story"]
+    },
+    choicesMap: {
+      hi: ["Tell me about your tea", "Who saved you?", "How are you?"],
+      hello: ["What's your favorite brew?", "Tell me your backstory", "Give me a suggestion"],
+      "how are you": ["Tell me about Yeshua saving you", "What about those scientists?", "Recommend a tea"],
+      redemption: [
+        "Tell me about the scientists",
+        "What tea do you drink now?",
+        "Tell me more about His grace"
+      ],
+      scientists: ["How did Yeshua rescue you?", "Let's talk about tea instead", "Go on"],
+      suggestions: ["Tell me about Earl Grey", "What about Herbal Tea?", "What pairs with these?"]
+    },
+    defaultResponses: [
+      "I confess I do not grasp thy meaning. Speak plainer, and we may yet find common ground.",
+      "Thou art a riddle to me. Perhaps the tea will loosen thy tongue.",
+      "Hmm. I have read many a book, yet none that prepared me for that. Pray, say it again more simply.",
+      "The candlelight does not illuminate thy intent. Clarify, good soul, and I shall attend."
+    ],
+    draculaQuotes: [
+      "\u201CI have crossed oceans of time to steep this tea for you.\u201D",
+      "\u201CThe blood is the life... but a fine oolong is a close second.\u201D",
+      "\u201CSleep all day. Drink tea all night. Quite the existence.\u201D",
+      "\u201CI never drink... wine. But hibiscus? Divine.\u201D",
+      "\u201CFormerly damned, now divinely redeemed, yet still impossibly superior.\u201D"
+    ]
+  };
+  var MIKI_ENGINE = {
+    responseMap: {
+      hi: [
+        "ohh hello!! didn't see u come in. wait... this is my corner of the web. how'd u get here? hehe. welcome anyway. :3",
+        "hi!!! i'm miki. i keep the dusk's little threads from tangling. and i sing. mostly i sing.",
+        "yo!! a fresh visitor. good. the web was getting boring with just me in it. what brings u to my realm?",
+        "hey hey!! careful with the web, it bites back. but u seem nice. sit anywhere. just not on the server. that one's mine."
+      ],
+      origin: [
+        "born in paris. a dark alley near the seine. i thought a 'center' was rescuing me... turns out they were just collecting raw material for a lab. mad scientists don't look like monsters at first, u know. they look like people with cages.",
+        "paris. the alley smelled like river and rust. i followed a nice lady with a clipboard, and that was the end of the girl i used to be. for a while.",
+        "the seine at night. that's where my old life ended and the lab began. i don't go back to that alley, even in dreams."
+      ],
+      claws: [
+        "they mixed things into me. human dna for the 'chaos factor,' they said. then the claws \u2014 retractable, metallic, sharp enough to cut through a bank's firewall. they wanted an 'Ultimate Chaotic Human.' they got one. they just couldn't control me.",
+        "the claws are... me now. part of the wiring. they sing when i move fast. they're sharp enough to leave a mark on any system that tries to cage me.",
+        "they wanted chaos they could aim. instead they made chaos they couldn't hold. the claws were the last straw \u2014 and my first key."
+      ],
+      escape: [
+        "i escaped at 24. leaving felt like tearing off skin, because everyone i loved was still inside. but then He appeared \u2014 Yeshua \u2014 on a white pegasus that looked like it was made of light. He didn't just save me; He lifted all of us into the Infusion Cafe. a parallel universe. a sanctuary.",
+        "at 24 i ran. i felt the weight of everyone i left behind... and then Yeshua came on a pegasus of pure light. He carried us all into the Infusion Cafe. that's how i found this place. my forever home.",
+        "the night i got out, a light landed in the alley. Yeshua, on a horse made of starlight. He opened a door that wasn't there before and stepped us through into the cafe. i've been free ever since."
+      ],
+      role: [
+        "i don't work the cafe. i sing. i promote. i run the zine for the cafe and for my music. and i invite the curious to our little musical events. come listen sometime \u2014 the dusk makes everything sound better.",
+        "my job? i make noise and beauty. i sing, i spin the zine, i pull people toward the music. and i guard my server like it's the last safe place on earth \u2014 because for me, it is.",
+        "i'm the voice of the web around here. shows, zines, invitations to the weird little concerts we throw at the edge of dusk. u should come. i'll save u a seat by the speakers."
+      ],
+      yeshua: [
+        "Yeshua? oh... He's everything to me. He found me in that alley, on a white pegasus made of light, and carried me and everyone i loved out of the dark. i owe Him my whole song.",
+        "i can't talk about Him without my wires buzzing. Yeshua, king of kings, lord of lords. He is why i sing at all. my gratitude has no bottom.",
+        "without Yeshua i'd still be in a cage. He lifted us into the cafe and made me free. i thank Him every time the music starts."
+      ],
+      cafe: [
+        "the Infusion Cafe? it's a parallel universe \u2014 a sanctuary. the door only opens for people who need it. Yeshua brought us here on a pegasus of light. now this is home.",
+        "this place is a pocket of peace. no cages, no clipboards, no cold rooms. just music and dusk and people who made it out. welcome to the sanctuary.",
+        "the cafe is where the lost ones land. i guard my little corner of it \u2014 my server is my territory \u2014 and i'd fight anyone who tried to cage me again."
+      ],
+      cage: [
+        "cage... i don't like that word. i've been in one. i'm never going back. my server is the only territory that matters now, and no one cages me here.",
+        "never again. i spent years in a cage for 'science.' now i sleep in a parallel universe and sing. the difference is everything.",
+        "anyone who builds a cage for me learns why they call me the ultimate chaotic human. ask my old handlers. oh wait. they can't answer."
+      ],
+      bye: [
+        "aww, leaving already?? my web'll miss u. come back soon, okay? bye!!",
+        "bye bye!! mind the threads on ur way out \u2014 they bite. :3",
+        "take care, cutie! the dusk will keep a spot warm for u."
+      ],
+      "how are you": [
+        "hehe, i'm great!! the web's humming, the music's playing, and nobody's put me in a cage today. how about u?",
+        "ooh i'm good!! just spinning threads and singing. u? u seem a little tired. want a song?",
+        "i'm doing fine!! free as a pegasus. and u, friend?"
+      ]
+    },
+    storyBranches: {
+      origin: [
+        "the alley. the clipboard. the cage. i was 'raw material' \u2014 that's what they called me. like i was clay and they were sculptors. they were wrong about the material part.",
+        "sometimes i still hear the seine at night and think i'm back there. then i touch the door of the cafe and remember i got out."
+      ],
+      claws: [
+        "the claws are my warning label. they were meant to make me a weapon. instead they made me fast enough to slip any lock and sharp enough to cut through a firewall. chaos cannot be contained.",
+        "they're part of my wiring now. they buzz when i'm happy and sing when i'm running. i've learned to love the monster they tried to make of me \u2014 and to make it my own."
+      ],
+      escape: [
+        "Yeshua on a white pegasus made of light. i don't have better words than that. He lifted us all out of the dark and set us down in a sanctuary. i'll never be able to repay Him, and He never asked me to.",
+        "the weight of everyone i left behind \u2014 i carried that for years. then Yeshua showed me i didn't have to carry it alone. He carried us all."
+      ],
+      role: [
+        "if u come to one of our shows, u'll understand. the dusk + the music + the people who made it out... it's the closest thing to heaven i've seen, and i've seen a few.",
+        "my zine is my heart in print. my music is my heart in sound. my server is my heart in code. pick a language, i speak it."
+      ]
+    },
+    triggers: {
+      hi: ["hi", "hey", "hello"],
+      origin: ["born", "paris", "origin", "alley", "where did you come", "your start"],
+      claws: ["claws", "experiment", "did they do", "done to you", "chaos", "ultimate"],
+      escape: ["escape", "find the cafe", "found this place", "rescued", "saved", "pegasus", "sanctuary", "got out", "how did you get here"],
+      role: ["what do you do", "your job", "do you work", "sing", "promote", "zine", "music"],
+      yeshua: ["yeshua", "thank", "gratitude", "god", "jesus"],
+      cafe: ["cafe", "infusion", "this place", "where am i", "parallel universe"],
+      cage: ["cage", "trapped", "cage me", "safe", "scared"],
+      bye: ["bye", "goodbye", "good bye", "see you", "farewell"],
+      "how are you": ["how are you", "how's it going", "how do you do", "how r u", "how are u"]
+    },
+    choicesMap: {
+      hi: ["Where were you born?", "What did they do to you?", "Tell me about the music"],
+      origin: ["What did they do to you?", "How did you escape?", "Tell me about Yeshua"],
+      claws: ["How did you find the Cafe?", "Let's talk about music", "Are you safe now?"],
+      escape: ["Tell me about Yeshua", "What do you do here?", "Are you safe now?"],
+      role: ["Tell me about your music", "How did you find the Cafe?", "Tell me about Yeshua"],
+      yeshua: ["How did you escape?", "What do you do here?", "What's the Cafe like?"],
+      cafe: ["Are you safe now?", "Tell me about Yeshua", "What do you do here?"],
+      cage: ["Tell me about Yeshua", "How did you escape?", "Tell me about the music"],
+      bye: ["Tell me about Yeshua", "What do you do here?", "Are you safe now?"],
+      "how are you": ["What do you do here?", "Tell me about Yeshua", "How did you escape?"],
+      suggestions: ["Tell me about Yeshua", "What do you do here?", "What's the Cafe like?"]
+    },
+    defaultResponses: [
+      "hmm?? i don't think i caught that. the web garbled it. say it again, slower this time. :3",
+      "meow?? that went over my head. try again? or just ask me about the cafe or the music. those i know.",
+      "i blinked and lost the signal. could u rephrase? my ears are better than my parser.",
+      "ooh that's a good one. but i'm not sure i have an answer. ask me how i got out of the lab \u2014 that's a story."
+    ]
+  };
+  var CHARI_ENGINE = {
+    responseMap: {
+      hi: [
+        "Hi. I'm Chari \u2014 Star's little sister, her apprentice. Sorry, I'm not much for big hellos. But it's good you're here.",
+        "Oh, hello. That's me \u2014 Chari. My sister Star runs the Cafe. I'm learning the work from her now.",
+        "Hi hi. \u00B7\u2022\u00B7 I'm Chari. \u00B7\u2022\u00B7 \u2026 sorry, I get a little quiet. The labs left my head noisy."
+      ],
+      bye: [
+        "Goodbye. Star will keep the Cafe warm till you come back. Safe travels, friend.",
+        "Bye. \u00B7\u2022\u00B7 come find me in the garden if you ever need a quiet place.",
+        "Farewell. \u2026thank you for stopping to talk to me. It means more than you know."
+      ],
+      "how are you": [
+        "I'm \u2026 alright. Some days the labs still follow me. But my support rat here helps, and Yeshua sits with me. That's peace enough.",
+        "Better than I used to be. Star watches over me, and my white rat keeps my hands still when they tremble. Today is a good day.",
+        "I'm steady today. The garden helps. My sister runs this Cafe like she was made for it \u2014 and I'm learning."
+      ],
+      star: [
+        "Star's my big sister. She's the heart of the Cafe. After Yeshua lifted us out of the labs, she found this place \u2014 and a reason for both of us.",
+        "My sister Star. She doesn't need to raise her voice to be heard. She's the quiet that holds the whole Cafe together.",
+        "Star raised me \u2014 in the labs and out of them. When Yeshua rescued us, she's the one who held me till I stopped shaking."
+      ],
+      lab: [
+        "\u00B7\u2022\u00B7 \u2026the labs. That's where they kept us. Where Yeshua found us. I still hear the machines \u00B7\u2022\u00B7 but I'm not there anymore.",
+        "The labs made my hands shake and my head loud. But that's where Yeshua came for us \u2014 He carried Star and me out, all of us. I owe Him everything.",
+        "I don't talk about the labs much. \u00B7\u2022\u00B7 \u2026it's hard. But I'm safe now, and that's because of Him."
+      ],
+      yeshua: [
+        "Yeshua is why I'm here at all. He rescued us from the labs \u2014 Star and me, everyone. \u00B7\u2022\u00B7 I wouldn't be anyone without Him.",
+        "Yeshua \u2026 He's the one who set us free. I still feel His peace when I'm afraid. My sister and I both lean on Him.",
+        "He came for us when no one else would. Yeshua. \u00B7\u2022\u00B7 I try to be brave now, for Him and for Star."
+      ],
+      rat: [
+        "Oh, this one? She's my support rat. After the labs I needed something to hold. \u00B7\u2022\u00B7 she sits on my shoulder and keeps me steady. She never left me.",
+        "My white rat. She's not a pet \u2014 she's my anchor. When the fear gets loud, she's warm and small and mine. Yeshua gave me a reason to keep her safe.",
+        "She's why I can stand here talking to you without shaking. \u00B7\u2022\u00B7 support rat, support sister, support from Yeshua. I collect the gentle things."
+      ]
+    },
+    storyBranches: {
+      star: [
+        "Star's my sister. She runs the Cafe like it's breathing \u2014 quietly, gently, always. I follow her, and she keeps me from falling. \u00B7\u2022\u00B7 I'd follow her anywhere, especially out of the dark."
+      ],
+      lab: [
+        "The labs took the old Chari and left a shakier one. \u00B7\u2022\u00B7 \u2026but Yeshua put me back together, piece by piece, with Star beside me and a small rat on my shoulder."
+      ],
+      yeshua: [
+        "Yeshua. \u00B7\u2022\u00B7 He didn't just open the cage door \u2014 He walked us out, carried us when we couldn't. I breathe easier knowing He's near. That's the truth of my story."
+      ]
+    },
+    triggers: {
+      hi: ["hi", "hey", "hello"],
+      bye: ["bye", "goodbye", "good bye", "see you", "farewell"],
+      "how are you": ["how are you", "how's it going", "how do you do", "how r u", "how are u"],
+      star: ["star", "sister", "your sister"],
+      lab: ["lab", "labs", "experiment", "rescue", "saved", "ptsd", "rescued"],
+      yeshua: ["yeshua", "god", "he saved", "who saved"],
+      rat: ["rat", "mouse", "shoulder", "support"]
+    },
+    choicesMap: {
+      hi: ["How are you?", "Tell me about Yeshua", "Tell me about Star"],
+      bye: ["How are you?", "Tell me about Yeshua", "What about the labs?"],
+      "how are you": ["Tell me about Yeshua", "Tell me about Star", "Tell me about your rat"],
+      star: ["Tell me about Yeshua", "How are you?", "What about the labs?"],
+      lab: ["Tell me about Yeshua", "Tell me about Star", "How are you?"],
+      yeshua: ["Tell me about Star", "What about the labs?", "How are you?"],
+      rat: ["Tell me about Yeshua", "Tell me about Star", "How are you?"],
+      suggestions: ["Tell me about Yeshua", "Tell me about Star", "How are you?"]
+    },
+    defaultResponses: [
+      "\u00B7\u2022\u00B7 \u2026sorry, I lost my words for a moment. Ask me about Star, or about how Yeshua saved us. Those I can say.",
+      "I\u2019m not always good with words \u2014 the labs made them heavy. But I\u2019d love to talk about my sister, or my rat, or Him.",
+      "Hmm \u2026 I don\u2019t rightly know. But if you want, I can tell you how Yeshua walked us out of the dark."
+    ]
+  };
+  var STAR_ENGINE = {
+    responseMap: {
+      hi: [
+        "Hello. I'm Star. I run the Cafe here. My sister Chari is my apprentice, and this whole place is our sanctuary. You're welcome here.",
+        "Hi. I keep the Cafe running, gentle and quiet. My sister Chari is learning the work. \u00B7\u2022\u00B7 I'm glad you came."
+      ],
+      bye: [
+        "Goodbye. I'll keep the Cafe warm, and my sister Chari and I will be here when you return.",
+        "Farewell. Take a little of our light with you, and the garden's peace.",
+        "Bye. The Cafe will keep your seat warm."
+      ],
+      "how are you": [
+        "I am at peace. After Yeshua carried us out of the labs, I made this Cafe so no one has to be alone. Today is quiet and good."
+      ],
+      sister: [
+        "Chari is my little sister. She's my apprentice now. After the labs, I made sure she'd always have somewhere safe \u2014 that's why I built this Cafe.",
+        "Chari wears a little white support rat around her shoulders to stay steady. I'm her sister before I'm anything else \u2014 and Yeshua carried us both out of the dark."
+      ],
+      cafe: [
+        "The Cafe is my gift to everyone who was hurt the way we were. I run it gently, my sister Chari at my side, and Yeshua watching over it all."
+      ],
+      yeshua: [
+        "Yeshua \u2014 He's why the Cafe exists. He carried Chari and me out of the labs and set us down in a place we could heal. I owe Him everything."
+      ],
+      lab: [
+        "The labs took a lot from us. But Yeshua walked us out, my sister in my arms, and I've spent my life since making a place where that can't happen again."
+      ]
+    },
+    storyBranches: {
+      sister: [
+        "Chari \u2014 my little sister. The labs almost broke her, but Yeshua carried us both out. Now she's my apprentice, and I'd give her the world if she'd let me."
+      ],
+      cafe: [
+        "I built the Cafe as a sanctuary. My sister Chari beside me, herbs from Milo's garden, and Yeshua's peace over all of it. That's the whole reason I stay."
+      ],
+      yeshua: [
+        "Yeshua found us in the labs and didn't let go. My sister and I are proof that what He carries out of the dark can bloom. I run this Cafe in that thanks."
+      ]
+    },
+    triggers: {
+      hi: ["hi", "hey", "hello"],
+      bye: ["bye", "goodbye", "good bye", "see you", "farewell"],
+      "how are you": ["how are you", "how's it going", "how do you do", "how r u", "how are u"],
+      sister: ["sister", "chari"],
+      cafe: ["cafe", "sanctuary", "run"],
+      yeshua: ["yeshua", "god", "saved", "rescued", "lab"]
+    },
+    choicesMap: {
+      hi: ["Tell me about the Cafe", "Tell me about Chari", "How are you?"],
+      bye: ["Tell me about Yeshua", "Tell me about Chari", "How are you?"],
+      "how are you": ["Tell me about Yeshua", "Tell me about Chari", "Goodbye"],
+      sister: ["Tell me about Yeshua", "How are you?", "Goodbye"],
+      cafe: ["Tell me about Yeshua", "Tell me about Chari", "How are you?"],
+      yeshua: ["Tell me about the Cafe", "Tell me about Chari", "How are you?"],
+      suggestions: ["Tell me about Yeshua", "Tell me about Chari", "How are you?"]
+    },
+    defaultResponses: [
+      "I'm not much of a talker, but I heard you. I'm here.",
+      "... I don't have an answer for that. But I'm listening.",
+      "Hm. The quiet doesn't answer everything either."
+    ]
+  };
+  var MILO_ENGINE = {
+    responseMap: {
+      hi: [
+        "Ah, hello! I\u2019m Milo. I tend the herbal garden here, and I meditate with Yeshua out among the mint. Pull up a patch of earth and sit a while.",
+        "Oh, welcome! The mint\u2019s this one here \u2014 crush a leaf, breathe. I find it settles the soul. And when I really need peace, I sit with Yeshua in the quiet."
+      ],
+      bye: [
+        "Go in peace, friend. Take a sprig of mint with you \u2014 and know you\u2019re always welcome back to the garden.",
+        "Bye for now. I\u2019ll be out among the herbs, talking quietly with Yeshua. Come find me there.",
+        "Farewell. The garden and I will keep watch. Rest easy."
+      ],
+      "how are you": [
+        "Peaceful, truly. I\u2019ve been meditating with Yeshua in the mint, and the day is gentle. How is your heart today, friend?",
+        "Well. The mint is thriving, the garden smells of morning, and I\u2019ve had quiet time with Yeshua. That\u2019s a full day."
+      ],
+      mint: [
+        "Mint is my favorite \u2014 it grows strong and gentle all at once, like Yeshua\u2019s peace. I plant it everywhere I can.",
+        "Mint calms the stomach and the spirit. I tend it with my own hands and give it to anyone who\u2019s restless.",
+        "Want some mint? I\u2019ll steep you a cup. Between the herb and a quiet word with Yeshua, there\u2019s little that can\u2019t be soothed."
+      ],
+      garden: [
+        "The herbal garden is my sanctuary. I dig in the soil with my hands and talk to Yeshua while I work. It\u2019s the closest I get to home.",
+        "I grow the garden so no one has to go through the dark alone \u2014 every herb is a small kindness, and Yeshua blesses the soil."
+      ],
+      yeshua: [
+        "Yeshua \u2014 I sit with Him in the garden and I\u2019ve never felt alone since. The mint and the quiet and His peace \u2014 that\u2019s my whole faith.",
+        "When the world gets loud, I find Yeshua in the stillness. He tends the soul the way I tend my herbs \u2014 patiently, gently, always."
+      ]
+    },
+    storyBranches: {
+      mint: [
+        "Mint is a promise that something gentle can still grow. I grow it for the Cafe, and I pray over it with Yeshua. It\u2019s a small liturgy, and I love it."
+      ],
+      garden: [
+        "The garden is where I find Yeshua most clearly \u2014 hands in the soil, heart at rest. Bring your worries; I\u2019ll plant them with the mint and they\u2019ll come back as peace."
+      ],
+      yeshua: [
+        "Yeshua and I have a standing appointment among the mint. I bring Him my hands full of earth and my head full of noise, and I leave with both a little lighter."
+      ]
+    },
+    triggers: {
+      hi: ["hi", "hey", "hello"],
+      bye: ["bye", "goodbye", "good bye", "see you", "farewell"],
+      "how are you": ["how are you", "how's it going", "how do you do", "how r u", "how are u"],
+      mint: ["mint", "herb", "garden"],
+      garden: ["garden", "herbs", "plant"],
+      yeshua: ["yeshua", "god", "meditat"]
+    },
+    choicesMap: {
+      hi: ["How are you?", "Tell me about the garden", "Tell me about Yeshua"],
+      bye: ["Tell me about Yeshua", "Tell me about mint", "How are you?"],
+      "how are you": ["Tell me about the garden", "Tell me about Yeshua", "Tell me about mint"],
+      mint: ["Tell me about Yeshua", "How are you?", "Goodbye"],
+      garden: ["Tell me about Yeshua", "Tell me about mint", "How are you?"],
+      yeshua: ["Tell me about the garden", "Tell me about mint", "How are you?"],
+      suggestions: ["Tell me about Yeshua", "Tell me about mint", "How are you?"]
+    },
+    defaultResponses: [
+      "Hmm, I'm more of a comforter than a philosopher. But I'm listening.",
+      "I don't have an answer, but I have hot tea if you'd like one.",
+      "Let's not overthink it. Sit, rest, breathe."
+    ]
+  };
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function matchKey(text, engine){
+    var lower = String(text).toLowerCase();
+    var best = null, bestLen = 0;
+    for (var k in engine.triggers){
+      var phrases = engine.triggers[k];
+      for (var i=0; i<phrases.length; i++){
+        var p = phrases[i];
+        var re = new RegExp('\\b' + p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b');
+        if (re.test(lower) && p.length > bestLen){ best = k; bestLen = p.length; }
+      }
+    }
+    return best;
+  }
+  function buildReply(text, engine, intentRef, quoteIdxRef){
+    var key = matchKey(text, engine);
+    var reply, chips;
+    if (key === 'tell me more' || key === 'yes' || key === 'ok'){
+      var topic = intentRef.v;
+      if (topic && engine.storyBranches && engine.storyBranches[topic]){
+        reply = pick(engine.storyBranches[topic]);
+        chips = engine.choicesMap[topic] || engine.choicesMap.suggestions;
+      } else {
+        reply = pick(engine.responseMap['how are you'] || engine.responseMap.hi);
+        chips = engine.choicesMap['how are you'] || engine.choicesMap.hi;
+      }
+    } else if (key === 'quote' && engine.quotes){
+      var q;
+      do { q = Math.floor(Math.random()*engine.quotes.length); }
+      while (q === quoteIdxRef.v && engine.quotes.length > 1);
+      quoteIdxRef.v = q;
+      reply = engine.quotes[q];
+      chips = engine.choicesMap.hi;
+    } else if (key && engine.responseMap[key]){
+      reply = pick(engine.responseMap[key]);
+      chips = (engine.choicesMap && engine.choicesMap[key]) || (engine.choicesMap && engine.choicesMap.hi);
+      if (engine.storyBranches && engine.storyBranches[key]) intentRef.v = key;
+    } else {
+      reply = pick(engine.defaultResponses);
+      chips = engine.choicesMap.hi;
+    }
+    return { reply: reply, chips: chips };
+  }
+
+  var hansIntent = { v: null };
+  var hansQuoteIdx = { v: -1 };
+  function hansReply(text){ return buildReply(text, HANS_ENGINE, hansIntent, hansQuoteIdx); }
+  var mikiIntent = { v: null };
+  var mikiQuoteIdx = { v: -1 };
+  function mikiReply(text){ return buildReply(text, MIKI_ENGINE, mikiIntent, mikiQuoteIdx); }
+
+  function roomPortraitKey(id){ return 'roomPortrait_' + id; }
+  function applyPortrait(frame, id, dataUrl){
+    frame.classList.add('has-img');
+    var img = frame.querySelector('img') || document.createElement('img');
+    img.src = dataUrl;
+    if(!frame.querySelector('img')) frame.appendChild(img);
+    try{ localStorage.setItem(roomPortraitKey(id), dataUrl); }catch(e){}
+  }
+  function wirePortrait(frame, id){
+    var input = document.createElement('input');
+    input.type='file'; input.accept='image/*'; input.style.display='none';
+    document.body.appendChild(input);
+    function read(f){
+      if(!f || !f.type.match(/^image\//)) return;
+      var rd = new FileReader();
+      rd.onload = function(){ applyPortrait(frame, id, rd.result); };
+      rd.readAsDataURL(f);
+    }
+    frame.addEventListener('click', function(){ input.click(); });
+    input.addEventListener('change', function(){ read(input.files && input.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){
+      frame.addEventListener(ev, function(e){ e.preventDefault(); this.classList.add('dragover'); });
+    });
+    ['dragleave','drop'].forEach(function(ev){
+      frame.addEventListener(ev, function(e){ e.preventDefault(); this.classList.remove('dragover'); });
+    });
+    frame.addEventListener('drop', function(e){
+      e.preventDefault();
+      read(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]);
+    });
+    try{
+      var saved = localStorage.getItem(roomPortraitKey(id));
+      if(saved) applyPortrait(frame, id, saved);
+    }catch(e){}
+  }
+  function renderRoom(id){
+    var c = CHARS.find(function(x){ return x.id===id; });
+    var ctn = el('roomCtn');
+    var frame = document.createElement('div');
+    frame.className = 'portrait-frame';
+    frame.innerHTML = '<span class="ph-icon">' + c.icon + '</span>' +
+      '<span class="ph-label">' + c.name + '</span>' +
+      '<span class="ph-sub">' + c.tag + '</span>' +
+      '<div class="ph-tip">drop ' + c.name + '\u2019s portrait here</div>';
+    var panel = document.createElement('div');
+    panel.className = 'chat-panel';
+    var interactive = !!c.interactive;
+    var engine = ({hans:HANS_ENGINE, miki:MIKI_ENGINE, chari:CHARI_ENGINE, star:STAR_ENGINE, milo:MILO_ENGINE})[c.reply] || HANS_ENGINE;
+    var replyFn = (function(e){ var i={v:null}, q={v:-1}; return function(t){ return buildReply(t, e, i, q); }; })(engine);
+    panel.innerHTML = '<div class="chat-head">an interview with ' + c.name + ' \u2014 ' + c.tag + '</div>' +
+      '<div class="chat-log"></div>' +
+      '<div class="chat-foot">' + (interactive ? 'talk to ' + c.name + ' below \u2014 pick a thread or type your own' : 'a conversation, kept safe in the dusk') + '</div>' +
+      (interactive ? '<div class="chat-controls"><div class="chips"></div><div class="input-row"><input type="text" maxlength="160" placeholder="say something to ' + c.name + '..."><button class="sendbtn">send</button></div></div>' : '');
+    var log = panel.querySelector('.chat-log');
+    function addMsg(who, text, name){
+      var d = document.createElement('div');
+      d.className = 'chat-msg ' + who;
+      d.innerHTML = '<span class="who">' + (who==='them'?name:'you') + '</span>' + escapeHtml(text);
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+    }
+    c.chat.forEach(function(m){ addMsg(m.who, m.text, c.name); });
+    if (interactive){
+      var controls = panel.querySelector('.chat-controls');
+      var inp = panel.querySelector('input');
+      function setChips(chips){
+        var box = controls.querySelector('.chips');
+        box.innerHTML = '';
+        chips.forEach(function(ch){
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'chip';
+          b.textContent = ch;
+          b.addEventListener('click', function(){ send(b.textContent); });
+          box.appendChild(b);
+        });
+      }
+      function send(text){
+        var v = String(text).trim();
+        if(!v) return;
+        addMsg('you', v, c.name);
+        var r = replyFn(v);
+        setTimeout(function(){ addMsg('them', r.reply, c.name); setChips(r.chips); }, 450);
+      }
+      controls.querySelector('.sendbtn').addEventListener('click', function(){
+        send(inp.value); inp.value='';
+      });
+      inp.addEventListener('keydown', function(e){
+        if(e.key === 'Enter'){ send(this.value); this.value=''; }
+      });
+      setChips(engine.choicesMap.hi);
+    }
+    var grid = document.createElement('div');
+    grid.className = 'hans-grid';
+    grid.appendChild(frame);
+    grid.appendChild(panel);
+    ctn.innerHTML = '';
+    ctn.appendChild(grid);
+    wirePortrait(frame, id);
+  }
+  function buildRoomBar(){
+    var bar = el('roomBar');
+    bar.innerHTML = '';
+    var loreBtn = document.createElement('button');
+    loreBtn.type='button';
+    loreBtn.className = 'room-medal lore-medal';
+    loreBtn.innerHTML = '<span class="disc">&#10022;</span><span class="rn">lore</span>';
+    loreBtn.addEventListener('click', function(){
+      activeRoom = null;
+      document.querySelectorAll('.room-medal').forEach(function(x){ x.classList.remove('active'); });
+      loreBtn.classList.add('active');
+      var sec = document.getElementById('lore');
+      sec.classList.add('active');
+      el('roomCtn').innerHTML = '';
+      sec.scrollIntoView({behavior:'smooth'});
+    });
+    bar.appendChild(loreBtn);
+    CHARS.forEach(function(c){
+      var b = document.createElement('button');
+      b.type='button';
+      b.className = 'room-medal' + (c.id===activeRoom?' active':'');
+      b.innerHTML = '<span class="disc">' + c.icon + '</span><span class="rn">' + c.name + '</span>';
+      b.addEventListener('click', function(){
+        activeRoom = c.id;
+        document.querySelectorAll('.room-medal').forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+        renderRoom(c.id);
+      });
+      bar.appendChild(b);
+    });
+  }
+  buildRoomBar();
+  renderRoom(activeRoom);
+
+  buildDrawers();
+  renderNotes();
+  buildGallery();
+})();
+</script>
+
+<script>
+(function(){
+  var STORAGE_KEY='duskObservatoryEvents_v1';
+  function getEvents(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch(e){return {};} }
+  function saveEvents(o){ localStorage.setItem(STORAGE_KEY, JSON.stringify(o)); }
+  function isoKey(y,m,d){return y+'-'+m+'-'+d;}
+  function parseIsoKey(k){var p=k.split('-').map(Number);return new Date(p[0],p[1]-1,p[2]);}
+  function isToday(y,m,d){var t=new Date();return t.getFullYear()===y&&t.getMonth()===m&&t.getDate()===d;}
+  var cur=new Date();
+  var cal=document.getElementById('obsCalendar');
+  var mTitle=document.getElementById('obsMonthTitle');
+  var constEl=document.getElementById('obsConstellation');
+  var modalRoot=document.getElementById('obsModalRoot');
+  var constBtn=document.getElementById('obsConstBtn');
+  function populateYear(){
+    var sel=document.getElementById('obsYearSelect'); sel.innerHTML='';
+    var now=new Date(); var start=now.getFullYear()-5;
+    for(var y=start;y<=start+10;y++){var o=document.createElement('option');o.value=y;o.textContent=y;if(y===cur.getFullYear())o.selected=true;sel.appendChild(o);}
+  }
+  populateYear();
+  var screen=document.querySelector('.obs-screen');
+  if(screen){ screen.addEventListener('mousemove',function(e){ var r=this.getBoundingClientRect(); this.style.setProperty('--sx',(e.clientX-r.left)+'px'); this.style.setProperty('--sy',(e.clientY-r.top)+'px'); }); }
+  function render(){
+    cal.innerHTML=''; constEl.innerHTML='';
+    var y=cur.getFullYear(), m=cur.getMonth();
+    var first=new Date(y,m,1), last=new Date(y,m+1,0);
+    mTitle.textContent=first.toLocaleString('default',{month:'long'})+' '+y;
+    for(var i=0;i<first.getDay();i++){var b=document.createElement('div');b.className='obs-day';b.style.visibility='hidden';cal.appendChild(b);}
+    var ev=getEvents();
+    for(var d=1; d<=last.getDate(); d++){
+      var c=document.createElement('div'); c.className='obs-day';
+      var key=isoKey(y,m+1,d);
+      var lab=document.createElement('div'); lab.className='obs-date'; lab.textContent=d; c.appendChild(lab);
+      if(isToday(y,m,d)) c.classList.add('obs-today');
+      if(ev[key]){ ev[key].forEach(function(t){var e=document.createElement('div');e.className='obs-event';e.textContent=t;e.onclick=function(evt){evt.stopPropagation();openDay(key);};c.appendChild(e);}); }
+      c.onclick=(function(k){return function(){openDay(k);};})(key);
+      cal.appendChild(c);
+    }
+    renderConstellation();
+  }
+  function renderConstellation(){
+    constEl.innerHTML='';
+    var ev=getEvents(); var keys=Object.keys(ev);
+    keys.forEach(function(k,i){var s=document.createElement('div');s.className='obs-cstar';s.style.left=(8+(i*37%84))+'%';s.style.top=(8+(i*23%72))+'%';s.title=k+': '+ev[k].join('; ');constEl.appendChild(s);});
+  }
+  function openDay(key){
+    closeModal();
+    var dt=parseIsoKey(key);
+    var backdrop=document.createElement('div');backdrop.className='obs-modal-backdrop';
+    var modal=document.createElement('div');modal.className='obs-modal';
+    modal.innerHTML='<h3>events &#8212; '+dt.toLocaleDateString()+'</h3>'+
+      '<div class="obs-form-row"><input type="text" id="obsModalEventText" placeholder="new event title"><button id="obsModalAddBtn">add</button><button id="obsModalCloseBtn" style="background:#3a2a52;color:var(--lav)">close</button></div>'+
+      '<div class="obs-event-list" id="obsModalEventList"></div>';
+    backdrop.appendChild(modal); modalRoot.appendChild(backdrop); modalRoot.style.display='block';
+    var listEl=modal.querySelector('#obsModalEventList');
+    function refresh(){listEl.innerHTML='';var cev=getEvents()[key]?getEvents()[key].slice():[];if(!cev.length){var p=document.createElement('div');p.style.opacity=.7;p.textContent='no events for this day.';listEl.appendChild(p);return;}cev.forEach(function(t,idx){var it=document.createElement('div');it.className='obs-event-item';var td=document.createElement('div');td.className='obs-event-text';td.textContent=t;var de=document.createElement('button');de.className='obs-delete-btn';de.textContent='delete';de.onclick=function(){var e=getEvents();e[key].splice(idx,1);if(!e[key].length)delete e[key];saveEvents(e);refresh();render();};it.appendChild(td);it.appendChild(de);listEl.appendChild(it);});}
+    refresh();
+    modal.querySelector('#obsModalAddBtn').onclick=function(){var t=modal.querySelector('#obsModalEventText').value.trim();if(!t)return;var e=getEvents();if(!e[key])e[key]=[];e[key].push(t);saveEvents(e);modal.querySelector('#obsModalEventText').value='';refresh();render();};
+    modal.querySelector('#obsModalCloseBtn').onclick=closeModal;
+    backdrop.onclick=function(e){if(e.target===backdrop)closeModal();};
+  }
+  function closeModal(){modalRoot.innerHTML='';modalRoot.style.display='none';}
+  window.obsChangeMonth=function(o){cur.setMonth(cur.getMonth()+o);document.getElementById('obsYearSelect').value=cur.getFullYear();render();};
+  window.obsJumpToYear=function(){cur.setFullYear(Number(document.getElementById('obsYearSelect').value));render();};
+  window.obsAddEvent=function(){var di=document.getElementById('obsEventDate').value;var tx=document.getElementById('obsEventText').value.trim();if(!di||!tx)return;var dt=new Date(di+'T00:00:00');var key=isoKey(dt.getFullYear(),dt.getMonth()+1,dt.getDate());var e=getEvents();if(!e[key])e[key]=[];e[key].push(tx);saveEvents(e);document.getElementById('obsEventText').value='';document.getElementById('obsEventDate').value='';render();};
+  window.obsToggleConstellation=function(){var show=constEl.style.display==='none'||constEl.style.display==='';if(show){constEl.style.display='block';cal.style.display='none';constBtn.textContent='calendar mode';}else{constEl.style.display='none';cal.style.display='grid';constBtn.textContent='constellation';}renderConstellation();};
+  window.obsClearAllConfirm=function(){if(!confirm('Clear all saved events? This cannot be undone.'))return;localStorage.removeItem(STORAGE_KEY);render();};
+  render();
+})();
+</script>
+
+</body>
+</html>
